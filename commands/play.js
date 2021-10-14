@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('play')
-		.setDescription('Plays source specified by command.')
+		.setDescription('Plays source specified by command')
 		.addStringOption(option => option.setName('source').setDescription('Enter a media source to play')),
 	async execute(interaction, voice) {
 

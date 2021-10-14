@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('disconnect')
-		.setDescription('Disconnects from the voice channel currently connected to.'),
+		.setDescription('Disconnects from the voice channel currently connected to'),
 	async execute(interaction, voice) {
 
         if (!voice.inVoiceChannel)

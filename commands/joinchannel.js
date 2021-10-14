@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('joinchannel')
-		.setDescription('Joins the voice channel user is currently connected to.'),
+		.setDescription('Joins the voice channel user is currently connected to'),
 	async execute(interaction, voice) {
 
         if (interaction.member.voice.channel == null)
