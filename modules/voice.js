@@ -19,6 +19,12 @@ exports.Voice = class Voice {
         return this.vc.state.status === 'ready';
     }
 
+    get isPlaying() {
+        if (this.player == null)
+            return false;
+        return this.player.state.status === 'playing';
+    }
+
     constructor(client) {
         this.client = client;
         this.player = createAudioPlayer();
@@ -55,6 +61,10 @@ exports.Voice = class Voice {
 
     pause(){
         this.player.pause()
+    }
+
+    resume(){
+        this.player.unpause()
     }
 
     stop(){
