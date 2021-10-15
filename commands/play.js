@@ -5,7 +5,7 @@ module.exports = {
 		.setName('play')
 		.setDescription('Plays source specified by command')
 		.addStringOption(option => option.setName('source').setDescription('Enter a media source to play')),
-	async execute(interaction, voice) {
+	async execute({interaction, voice}={}) {
 
         if (!voice.inVoiceChannel)
             return interaction.reply({ content: `Bot is not in a Voice Channel`, ephemeral: true });

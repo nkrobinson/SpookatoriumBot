@@ -1,41 +1,35 @@
 {
-    "voting": [
-        {
-            "tier_1_voting": [
-                {
-                    "name": "Sound Cue",
-                    "type": "sound"
-                },
-                {
-                    "name": "Tiptoe Through The Tulips",
-                    "type": "sound"
-                }
-            ]
-        },
-        {
-            "tier_2_voting": [
-                {
-                    "name": "Sound Cue",
-                    "type": "sound"
-                },
-                {
-                    "name": "Tiptoe Through The Tulips",
-                    "type": "sound"
-                }
-            ]
-        },
-        {
-            "tier_3_voting": [
-                {
-                    "name": "Sound Cue",
-                    "type": "sound"
-                },
-                {
-                    "name": "Tiptoe Through The Tulips",
-                    "type": "sound"
-                }
-            ]
-        }
-    ]
+    "voting": {
+        "tier_1_voting": [
+            {
+                "name": "Sound Cue",
+                "type": "sound"
+            },
+            {
+                "name": "Tiptoe Through The Tulips",
+                "type": "sound"
+            }
+        ],
+        "tier_2_voting": [
+            {
+                "name": "Sound Cue",
+                "type": "sound"
+            },
+            {
+                "name": "Tiptoe Through The Tulips",
+                "type": "sound"
+            }
+        ],
+        "tier_3_voting": [
+            {
+                "name": "Sound Cue",
+                "type": "sound"
+            },
+            {
+                "name": "Tiptoe Through The Tulips",
+                "type": "sound"
+            }
+        ]
+    }
 	
 }

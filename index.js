@@ -2,6 +2,7 @@ const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
 const { Voice } = require('./modules/voice.js');
+const { Voting } = require('./modules/voting.js');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES] });
 
@@ -26,7 +27,11 @@ client.on('interactionCreate', async interaction => {
 	if (!command) return;
 
 	try {
-		await command.execute(interaction, voice);
+		await command.execute({
+			interaction : interaction,
+			voice : voice,
+			voting : voting
+		});
 	} catch (error) {
 		console.error(error);
 		return interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
@@ -35,3 +40,4 @@ client.on('interactionCreate', async interaction => {
 
 client.login(token);
 const voice = new Voice(client);
+const voting = new Voting();
