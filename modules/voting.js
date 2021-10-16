@@ -53,7 +53,7 @@ exports.Voting = class Voting {
 
     setFile(fileName) {
         this.fileName = fileName;
-        rthis.eadVoteFile();
+        this.readVoteFile();
     }
 
     setVotingChannel(channel_id) {
@@ -95,6 +95,17 @@ exports.Voting = class Voting {
         this.voteDict = votingDictionary;
     }
 
+    callSideVote() {
+        console.log('Calling Side Vote');
+        this.initialiseVotingDictionary();
+        var t = this;
+        this.vote = setTimeout(
+            function() { t.tallyVotes(); },
+            this.votingInterval
+        );
+        this.resetTimer();
+    }
+
     callVote() {
         console.log('Calling Vote');
         this.initialiseVotingDictionary();
@@ -103,6 +114,7 @@ exports.Voting = class Voting {
             function() { t.tallyVotes(); },
             this.votingInterval
         );
+        this.resetTimer();
     }
 
     endVoteEarly() {
@@ -137,6 +149,11 @@ exports.Voting = class Voting {
         }
         this.tier = this.tier + 1;
         this.setVotingForTier(tier);
+    }
+
+    resetTimer() {
+        this.stopTimer(); // Stop timer if timer active
+        this.startTimer(); // Stop timer if timer active
     }
 
     startTimer() {

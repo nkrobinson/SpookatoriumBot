@@ -8,7 +8,7 @@ module.exports = {
 		if (voting.isCurrentlyVoting)
 			return interaction.reply({ content: `A Vote is currently active`, ephemeral: true });
 
-		voting.CallVote();
+		voting.callVote();
 		return interaction.reply({ content: `A new Vote has been called`, ephemeral: true });
 	},
 };
