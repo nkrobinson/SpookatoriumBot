@@ -34,7 +34,7 @@ exports.Bridge = class Bridge {
 
     startVoting() {
         const channel = this.client.channels.cache.get(this.channelId)
-        channel.send('Voting has started! Use `\\vote` to vote for an interference for the Participant');
+        channel.send('Voting has started! Use `/vote` to vote for an interference for the Participant');
     }
 
 }

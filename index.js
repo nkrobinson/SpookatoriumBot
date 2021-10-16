@@ -1,6 +1,8 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
-const { token } = require('./config.json');
+const { token, guildId, roleId,
+	callvoteId,disconnectId,joinchannelId,pauseId,playId,startvotingId,stopId,stopvotingId 
+} = require('./config.json');
 const { Voice } = require('./modules/voice.js');
 const { Voting } = require('./modules/voting.js');
 const { Bridge } = require('./modules/bridge.js');
@@ -17,6 +19,75 @@ for (const file of commandFiles) {
 
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
+	const fullPermissions = [
+		{
+			id: callvoteId, //callvote
+			permissions: [{
+				id: roleId,
+				type: 'ROLE',
+				permission: true,
+			}],
+		},
+		{
+			id: disconnectId, //disconnect
+			permissions: [{
+				id: roleId,
+				type: 'ROLE',
+				permission: true,
+			}],
+		},
+		{
+			id: joinchannelId, //joinchannel
+			permissions: [{
+				id: roleId,
+				type: 'ROLE',
+				permission: true,
+			}],
+		},
+		{
+			id: pauseId, //pause
+			permissions: [{
+				id: roleId,
+				type: 'ROLE',
+				permission: true,
+			}],
+		},
+		{
+			id: playId, //play
+			permissions: [{
+				id: roleId,
+				type: 'ROLE',
+				permission: true,
+			}],
+		},
+		{
+			id: startvotingId, //startvoting
+			permissions: [{
+				id: roleId,
+				type: 'ROLE',
+				permission: true,
+			}],
+		},
+		{
+			id: stopId, //stop
+			permissions: [{
+				id: roleId,
+				type: 'ROLE',
+				permission: true,
+			}],
+		},
+		{
+			id: stopvotingId, //stopvoting
+			permissions: [{
+				id: roleId,
+				type: 'ROLE',
+				permission: true,
+			}],
+		}
+	];
+	
+	client.guilds.cache.get(guildId)?.commands.permissions.set({fullPermissions});
+
 	console.log('Ready!');
 });
 
@@ -40,7 +111,7 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.on('interactionCreate', interaction => {
-	if (!interaction.isSelectMenu()) 
+	if (!interaction.isSelectMenu())
 		return;
 
 	if (interaction.customId === 'select') {

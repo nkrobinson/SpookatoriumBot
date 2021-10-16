@@ -3,7 +3,8 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('stop')
-		.setDescription('Stops current media playback from Bot'),
+		.setDescription('Stops current media playback from Bot')
+		.setDefaultPermission(false),
         async execute({interaction, voice}={}) {
 
         if (!voice.isPlaying) {

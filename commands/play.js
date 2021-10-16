@@ -4,7 +4,8 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('play')
 		.setDescription('Plays source specified by command')
-		.addStringOption(option => option.setName('source').setDescription('Enter a media source to play')),
+		.addStringOption(option => option.setName('source').setDescription('Enter a media source to play'))
+		.setDefaultPermission(false),
 	async execute({interaction, voice}={}) {
 
         if (!voice.inVoiceChannel)
