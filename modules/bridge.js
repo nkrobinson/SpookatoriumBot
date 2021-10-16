@@ -1,4 +1,4 @@
-const { votingChannelId } = require('../config.json');
+const { votingChannelId } = require('../config/config.json');
 
 exports.Bridge = class Bridge {
 
@@ -12,8 +12,8 @@ exports.Bridge = class Bridge {
         this.channelId = votingChannelId;
     }
 
-    playVoteAudio(media) {
-        this.voice.playMedia(media);
+    playVoteAudio(audioCategory) {
+        this.voice.playMediaCategory(audioCategory, this.voting.tier);
     }
 
     voteFinish(winner, votes, tied) {
@@ -27,8 +27,8 @@ exports.Bridge = class Bridge {
         else
             channel.send(`Voting has Finished. \n${winner.name} won with ${votes} votes.`);
 
-        if (winner.audio != null) {
-            this.playVoteAudio(winner.audio)
+        if (winner.audio_category != null) {
+            this.playVoteAudio(winner.audio_category)
         }
     }
 

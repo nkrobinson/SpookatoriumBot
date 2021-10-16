@@ -3,7 +3,8 @@ const { joinVoiceChannel,
         createAudioResource, 
         getVoiceConnection
 } = require('@discordjs/voice');
-const { guild_id } = require('../config.json');
+const { guild_id } = require('../config/config.json');
+const fs = require('fs');
 
 exports.Voice = class Voice {
 
@@ -32,6 +33,14 @@ exports.Voice = class Voice {
         this.player.on('stateChange', (oldState, newState) => {
             console.log(`Audio player transitioned from ${oldState.status} to ${newState.status}`);
         });
+
+        this.readMediaJSON();
+    }
+
+    readMediaJSON() {
+        console.log('Reading from media file media.json');
+        const media = fs.readFileSync('./config/media.json');
+        this.mediaList = JSON.parse(media).media;
     }
 
     connect(channel_id, guild_id, adapterCreator) {
@@ -50,25 +59,6 @@ exports.Voice = class Voice {
         this.connection.destroy();
     }
 
-    completeMediaSource(mediaSource) {
-        if (mediaSource.search('\.mp3$') === -1) {
-
-            return mediaSource + '.mp3';
-        }
-        return mediaSource;
-    }
-
-    playMedia(mediaSource) {
-        if (!this.inVoiceChannel)
-            return;
-
-        const source = `./media/${this.completeMediaSource(mediaSource)}`
-
-        const resource = createAudioResource(source);
-        this.player.play(resource);
-        this.vc.subscribe(this.player);
-    }
-
     pause(){
         this.player.pause()
     }
@@ -79,6 +69,42 @@ exports.Voice = class Voice {
 
     stop(){
         this.player.stop();
+    }
+
+    completeMediaSource(mediaSource) {
+        if (mediaSource.search('\.mp3$') === -1) {
+
+            return mediaSource + '.mp3';
+        }
+        return mediaSource;
+    }
+
+    playMediaCategory(category, tier) {
+        if (!this.inVoiceChannel) return;
+        if (this.mediaList == null) return;
+
+        var filteredMediaList = [];
+        if (category === "all") {
+            filteredMediaList = this.mediaList.filter(d => d.tier <= tier);
+        } else {
+            filteredMediaList = this.mediaList.filter(d => d.category == category && d.tier <= tier);
+        }
+
+        const mediaSource = filteredMediaList[Math.floor(Math.random()*filteredMediaList.length)];
+
+        this.playMedia(mediaSource.source);
+    }
+
+    playMedia(mediaSource) {
+        if (!this.inVoiceChannel) return;
+
+        const source = `./media/${this.completeMediaSource(mediaSource)}`
+
+        console.log(`playing ${source}`);
+
+        const resource = createAudioResource(source);
+        this.player.play(resource);
+        this.vc.subscribe(this.player);
     }
 
 }

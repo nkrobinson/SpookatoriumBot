@@ -1,8 +1,9 @@
 const { 
     votingJsonFile,
     betweenVoteTime,
-    votingTime 
-} = require('../config.json');
+    votingTime,
+    tierMaxCount
+} = require('../config/config.json');
 const fs = require('fs');
 
 exports.Voting = class Voting {
@@ -51,11 +52,6 @@ exports.Voting = class Voting {
         this.votingJSON = JSON.parse(voting);
     }
 
-    initialiseTier() {
-        this.tier = 1;
-        this.setVotingForTier();
-    }
-
     setBridge(bridge) {
         this.bridge = bridge;
     }
@@ -74,21 +70,30 @@ exports.Voting = class Voting {
     }
 
     setVotingForTier() {
-        // TODO: Add cumulative list filling (Eliminating duplicates in JSON)
-        switch(this.tier) {
-            case 1: {
-                this.voteList = this.votingJSON.voting.tier_1_voting;
+        // Tier Minimum is 1;
+        this.voteList = this.votingJSON.voting.tier_1_voting;
+        if (this.tier > 1)
+            this.voteList.push(this.votingJSON.voting.tier_2_voting);
+        if (this.tier > 2)
+            this.voteList.push(this.votingJSON.voting.tier_3_voting);
+    }
+
+    initialiseTier() {
+        this.tier = 1;
+        this.tierCounter = 0;
+        this.setVotingForTier();
+    }
+
+    advanceTier() {
+        if (this.tierCounter > tierMaxCount) {
+            if (this.tier == 3) {
+                return;
             }
-            case 2: {
-                this.voteList = this.votingJSON.voting.tier_2_voting;
-            }
-            case 3: {
-                this.voteList = this.votingJSON.voting.tier_3_voting;
-            }
-            default: {
-                break;
-            }
-        }
+            this.tier = this.tier + 1;
+            this.setVotingForTier();
+            this.tierCounter = 0;
+        } else
+            this.tierCounter++;
     }
 
     initialiseVotingDictionary() {
@@ -164,6 +169,7 @@ exports.Voting = class Voting {
 
         this.vote = null;
         this.voteDict = null;
+        this.advanceTier();
 
         return {entry, maxVotes, tied};
     }
@@ -171,14 +177,6 @@ exports.Voting = class Voting {
     finishVote(winner) {
         const winnerJSON = this.getVoteDetails(winner.entry);
         this.bridge.voteFinish(winnerJSON, winner.maxVotes, winner.tied);
-    }
-
-    advanceTier() {
-        if (this.tier == 3) {
-            return;
-        }
-        this.tier = this.tier + 1;
-        this.setVotingForTier(tier);
     }
 
     resetTimer() {

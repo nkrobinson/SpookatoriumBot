@@ -1,0 +1,52 @@
+{
+    "media": [
+        {
+            "name": "I See You (Sean)",
+            "source": "iseeyou.mp3",
+            "category": "voice",
+            "tier": 1
+        },
+        {
+            "name": "I See You (Hidden)",
+            "source": "iseeyou2.mp3",
+            "category": "voice",
+            "tier": 1
+        },
+        {
+            "name": "Scream 1",
+            "source": "scream1.mp3",
+            "category": "scream",
+            "tier": 2
+        },
+        {
+            "name": "Scream 2",
+            "source": "scream1.mp3",
+            "category": "scream",
+            "tier": 2
+        },
+        {
+            "name": "Scream 3",
+            "source": "scream1.mp3",
+            "category": "scream",
+            "tier": 2
+        },
+        {
+            "name": "Dog",
+            "source": "dog.mp3",
+            "category": "animal",
+            "tier": 1
+        },
+        {
+            "name": "Crash",
+            "source": "crash.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Ambient 1",
+            "source": "ambient1.mp3",
+            "category": "ambient",
+            "tier": 1
+        }
+    ]
+}
