@@ -13,6 +13,6 @@ module.exports = {
 		const source = interaction.options.getString('source');
         voice.playMedia(source);
         
-        return interaction.reply({ content: `Playing ${source}`, ephemeral: true });
+        return interaction.reply({ content: `Playing ${voice.completeMediaSource(source)}`, ephemeral: true });
 	},
 };

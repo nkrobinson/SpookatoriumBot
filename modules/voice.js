@@ -50,12 +50,21 @@ exports.Voice = class Voice {
         this.connection.destroy();
     }
 
+    completeMediaSource(mediaSource) {
+        if (mediaSource.search('\.mp3$') === -1) {
+
+            return mediaSource + '.mp3';
+        }
+        return mediaSource;
+    }
+
     playMedia(mediaSource) {
         if (!this.inVoiceChannel)
             return;
-        // TODO: Check if source has file suffix, if not add it
 
-        const resource = createAudioResource(`./media/${mediaSource}`);
+        const source = `./media/${this.completeMediaSource(mediaSource)}`
+
+        const resource = createAudioResource(source);
         this.player.play(resource);
         this.vc.subscribe(this.player);
     }
