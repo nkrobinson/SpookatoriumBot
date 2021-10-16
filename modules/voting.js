@@ -24,12 +24,20 @@ exports.Voting = class Voting {
         return Math.ceil((this.timer._idleStart + this.timer._idleTimeout - Date.now()) / 1000);
     }
 
-    constructor(fileName=null) {
-        if (fileName == null)  {
-            this.fileName = votingJsonFile;
-        } else {
-            this.fileName = fileName;
-        }
+    get votingOptionsJSON() {
+        const votingJSON = []
+        this.voteList.forEach(function(item) {
+            votingJSON.push( {
+                "label" : item.name,
+                "description" : item.description,
+                "value" : item.id,
+            })
+        });
+        return votingJSON;
+    }
+
+    constructor() {
+        this.fileName = votingJsonFile;
 
         this.votingChannelId = votingChannelId;
 
@@ -51,6 +59,10 @@ exports.Voting = class Voting {
         this.setVotingForTier();
     }
 
+    setVoice(voice) {
+        this.voice = voice;
+    }
+
     setFile(fileName) {
         this.fileName = fileName;
         this.readVoteFile();
@@ -69,6 +81,7 @@ exports.Voting = class Voting {
     }
 
     setVotingForTier() {
+        // TODO: Add cumulative list filling (Eliminating duplicates in JSON)
         switch(this.tier) {
             case 1: {
                 this.voteList = this.votingJSON.voting.tier_1_voting;
@@ -88,7 +101,7 @@ exports.Voting = class Voting {
     initialiseVotingDictionary() {
         const votingDictionary = {}
         this.voteList.forEach(function(item) {
-            votingDictionary[item.name] = new Set();
+            votingDictionary[item.id] = new Set();
         });
 
         console.log(votingDictionary);
@@ -122,14 +135,18 @@ exports.Voting = class Voting {
         clearTimeout(this.vote);
     }
 
-    castVote(vote, voter) {
-        this.voteDict[vote].add(voter);
+    castVote(vote_id, voter) {
+        this.voteDict[vote_id].add(voter);
+    }
+
+    getVoteDetails(vote_id) {
+        return this.voteList.filter(d => d.id == vote_id)[0];
     }
 
     tallyVotes() {
         console.log('Tallying Votes');
-        const entry = '';
-        const maxVotes = 0;
+        var entry = '';
+        var maxVotes = 0;
         for (const key of Object.keys(this.voteDict)) {
             if (this.voteDict[key].size > maxVotes) {
                 maxVotes = this.voteDict[key].size;
@@ -139,6 +156,9 @@ exports.Voting = class Voting {
 
         this.vote = null;
         this.voteDict = null;
+
+
+        console.log([entry, maxVotes]);
 
         return [entry, maxVotes];
     }

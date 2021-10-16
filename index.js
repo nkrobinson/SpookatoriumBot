@@ -38,6 +38,22 @@ client.on('interactionCreate', async interaction => {
 	}
 });
 
+client.on('interactionCreate', interaction => {
+	if (!interaction.isSelectMenu()) 
+		return;
+
+	if (interaction.customId === 'select') {
+		if (!voting.isCurrentlyVoting) {
+			interaction.update({ content: 'There is no active vote currently', components: [] });
+			return;
+		}
+
+		voting.castVote(interaction.values, interaction.user.id);
+		console.log(voting.getVoteDetails(interaction.values).name);
+		interaction.update({ content: 'Your vote has been counted', components: [] });
+	}
+});
+
 client.login(token);
 const voice = new Voice(client);
 const voting = new Voting();

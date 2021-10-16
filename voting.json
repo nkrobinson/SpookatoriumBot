@@ -2,31 +2,43 @@
     "voting": {
         "tier_1_voting": [
             {
+                "id": "sound_cue",
                 "name": "Sound Cue",
+                "description": "Plays Sound Cue",
                 "type": "sound"
             },
             {
+                "id": "tiptoe_tulips",
                 "name": "Tiptoe Through The Tulips",
+                "description": "Plays Tiptoe Through The Tulips song",
                 "type": "sound"
             }
         ],
         "tier_2_voting": [
             {
+                "id": "sound_cue",
                 "name": "Sound Cue",
+                "description": "Plays Sound Cue",
                 "type": "sound"
             },
             {
+                "id": "tiptoe_tulips",
                 "name": "Tiptoe Through The Tulips",
+                "description": "Plays Tiptoe Through The Tulips song",
                 "type": "sound"
             }
         ],
         "tier_3_voting": [
             {
+                "id": "sound_cue",
                 "name": "Sound Cue",
+                "description": "Plays Sound Cue",
                 "type": "sound"
             },
             {
+                "id": "tiptoe_tulips",
                 "name": "Tiptoe Through The Tulips",
+                "description": "Plays Tiptoe Through The Tulips song",
                 "type": "sound"
             }
         ]
