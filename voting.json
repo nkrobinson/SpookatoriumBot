@@ -5,7 +5,8 @@
                 "id": "sound_cue",
                 "name": "Sound Cue",
                 "description": "Plays Sound Cue",
-                "type": "sound"
+                "type": "sound",
+                "audio": "Iseeyou_test.mp3"
             },
             {
                 "id": "tiptoe_tulips",
@@ -19,7 +20,8 @@
                 "id": "sound_cue",
                 "name": "Sound Cue",
                 "description": "Plays Sound Cue",
-                "type": "sound"
+                "type": "sound",
+                "audio": "Iseeyou_test.mp3"
             },
             {
                 "id": "tiptoe_tulips",
@@ -33,7 +35,8 @@
                 "id": "sound_cue",
                 "name": "Sound Cue",
                 "description": "Plays Sound Cue",
-                "type": "sound"
+                "type": "sound",
+                "audio": "Iseeyou_test.mp3"
             },
             {
                 "id": "tiptoe_tulips",

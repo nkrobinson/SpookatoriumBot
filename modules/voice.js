@@ -51,7 +51,8 @@ exports.Voice = class Voice {
     }
 
     playMedia(mediaSource) {
-        console.log(this.vc.state);
+        if (!this.inVoiceChannel)
+            return;
         // TODO: Check if source has file suffix, if not add it
 
         const resource = createAudioResource(`./media/${mediaSource}`);

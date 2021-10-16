@@ -3,6 +3,7 @@ const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
 const { Voice } = require('./modules/voice.js');
 const { Voting } = require('./modules/voting.js');
+const { Bridge } = require('./modules/bridge.js');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES] });
 
@@ -49,7 +50,7 @@ client.on('interactionCreate', interaction => {
 		}
 
 		voting.castVote(interaction.values, interaction.user.id);
-		console.log(voting.getVoteDetails(interaction.values).name);
+		console.log(`Vote Counted: ${voting.getVoteDetails(interaction.values).name}`);
 		interaction.update({ content: 'Your vote has been counted', components: [] });
 	}
 });
@@ -57,3 +58,4 @@ client.on('interactionCreate', interaction => {
 client.login(token);
 const voice = new Voice(client);
 const voting = new Voting();
+bridge = new Bridge(client, voice, voting);

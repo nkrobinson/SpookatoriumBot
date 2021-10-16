@@ -1,5 +1,4 @@
 const { 
-    votingChannelId, 
     votingJsonFile,
     betweenVoteTime,
     votingTime 
@@ -39,8 +38,6 @@ exports.Voting = class Voting {
     constructor() {
         this.fileName = votingJsonFile;
 
-        this.votingChannelId = votingChannelId;
-
         this.betweenVoteInterval = betweenVoteTime;
         this.votingInterval = votingTime;
 
@@ -59,17 +56,13 @@ exports.Voting = class Voting {
         this.setVotingForTier();
     }
 
-    setVoice(voice) {
-        this.voice = voice;
+    setBridge(bridge) {
+        this.bridge = bridge;
     }
 
     setFile(fileName) {
         this.fileName = fileName;
         this.readVoteFile();
-    }
-
-    setVotingChannel(channel_id) {
-        this.votingChannelId = channel_id;
     }
 
     setBetweenVoteTime(interval) {
@@ -104,27 +97,31 @@ exports.Voting = class Voting {
             votingDictionary[item.id] = new Set();
         });
 
-        console.log(votingDictionary);
         this.voteDict = votingDictionary;
     }
 
     callSideVote() {
         console.log('Calling Side Vote');
         this.initialiseVotingDictionary();
+        this.bridge.startVoting();
+
         var t = this;
         this.vote = setTimeout(
             function() { t.tallyVotes(); },
             this.votingInterval
         );
-        this.resetTimer();
     }
 
     callVote() {
         console.log('Calling Vote');
         this.initialiseVotingDictionary();
+        this.bridge.startVoting();
+
         var t = this;
         this.vote = setTimeout(
-            function() { t.tallyVotes(); },
+            function() { 
+                t.finishVote(t.tallyVotes());
+            },
             this.votingInterval
         );
         this.resetTimer();
@@ -147,20 +144,33 @@ exports.Voting = class Voting {
         console.log('Tallying Votes');
         var entry = '';
         var maxVotes = 0;
+        var ties = [];
         for (const key of Object.keys(this.voteDict)) {
-            if (this.voteDict[key].size > maxVotes) {
-                maxVotes = this.voteDict[key].size;
+            const size = this.voteDict[key].size;
+            if (size === maxVotes)
+                ties.push(key);
+            if (size > maxVotes) {
+                maxVotes = size;
                 entry = key;
+                ties = [key];
             }
         }
+
+        if (ties.length > 1) {
+            entry = ties[Math.floor(Math.random()*ties.length)];
+            var tied = true;
+        } else
+            var tied = false;
 
         this.vote = null;
         this.voteDict = null;
 
+        return {entry, maxVotes, tied};
+    }
 
-        console.log([entry, maxVotes]);
-
-        return [entry, maxVotes];
+    finishVote(winner) {
+        const winnerJSON = this.getVoteDetails(winner.entry);
+        this.bridge.voteFinish(winnerJSON, winner.maxVotes, winner.tied);
     }
 
     advanceTier() {
