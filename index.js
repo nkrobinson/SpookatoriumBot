@@ -2,7 +2,7 @@ const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token, guildId, roleId,
 	callvoteId,disconnectId,joinchannelId,pauseId,playId,startvotingId,stopId,stopvotingId 
-} = require('./config.json');
+} = require('./config/config.json');
 const { Voice } = require('./modules/voice.js');
 const { Voting } = require('./modules/voting.js');
 const { Bridge } = require('./modules/bridge.js');
