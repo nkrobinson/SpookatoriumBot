@@ -202,6 +202,13 @@ exports.Voting = class Voting {
         }
     }
 
+    stopVoteTimer() {
+        if (this.vote != null) {
+            clearInterval(this.vote);
+            this.vote = null;
+        }
+    }
+
     resetVoting() {
         this.stopTimer();
         this.readVoteFile();
@@ -213,6 +220,12 @@ exports.Voting = class Voting {
         this.readVoteFile();
         this.initialiseTier();
         this.startTimer();
+    }
+
+    stopVoting() {
+        this.initialiseTier();
+        this.stopTimer();
+        this.stopVoteTimer();
     }
 
 }
