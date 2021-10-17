@@ -8,7 +8,7 @@ module.exports = {
 		.setDefaultPermission(false),
     async execute({interaction, voice}={}) {
 
-        const channelId = interaction.options.getChannel('channel') ?? interaction.member.voice.channel?.id;
+        const channelId = interaction.options.getChannel('channel') ?? interaction.member.voice.channel;
         
         if (channelId == null)
             return interaction.reply({ content: `User is not in a Voice Channel and Channel ID not filled`, ephemeral: true });
