@@ -73,9 +73,9 @@ exports.Voting = class Voting {
         // Tier Minimum is 1;
         this.voteList = this.votingJSON.voting.tier_1_voting;
         if (this.tier > 1)
-            this.voteList.push(this.votingJSON.voting.tier_2_voting);
+            this.voteList = this.voteList.concat(this.votingJSON.voting.tier_2_voting);
         if (this.tier > 2)
-            this.voteList.push(this.votingJSON.voting.tier_3_voting);
+            this.voteList = this.voteList.concat(this.votingJSON.voting.tier_3_voting);
     }
 
     initialiseTier() {

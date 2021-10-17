@@ -28,6 +28,18 @@
                 "description": "Plays a long ambient sound cue",
                 "type": "sound",
                 "audio_category": "ambient"
+            },
+            {
+                "id": "no_swear",
+                "name": "No Swearing Challenge",
+                "description": "Participant is not allowed to swear (3 Minutes Duration)",
+                "type": "external"
+            },
+            {
+                "id": "close_eye",
+                "name": "Close Eye",
+                "description": "Participant must close one eye (3 Minutes Duration)",
+                "type": "external"
             }
         ],
         "tier_2_voting": [
@@ -44,6 +56,30 @@
                 "description": "Plays a scream sound cue",
                 "type": "sound",
                 "audio_category": "scream"
+            },
+            {
+                "id": "earphone_swap",
+                "name": "Earphones Swap",
+                "description": "Participant must swap around left and right earphones",
+                "type": "external"
+            },
+            {
+                "id": "no_stop",
+                "name": "No Stopping",
+                "description": "Participant must not stop moving for (3 Minutes Duration)",
+                "type": "in_game"
+            },
+            {
+                "id": "low_sens",
+                "name": "Low Sensitivity",
+                "description": "Participant must lower move/look sensitivity as low as it can go for (3 Minutes Duration)",
+                "type": "in_game"
+            },
+            {
+                "id": "only_left",
+                "name": "Only Left Turns",
+                "description": "Whenever turning, the Participant must only turn left (3 Minutes Duration)",
+                "type": "in_game"
             }
         ],
         "tier_3_voting": [
@@ -53,6 +89,24 @@
                 "description": "Plays a random music song",
                 "type": "sound",
                 "audio_category": "music"
+            },
+            {
+                "id": "walk_backwards",
+                "name": "Only Backwards Walking",
+                "description": "Participant can only walk backwards (3 Minutes Duration)",
+                "type": "in_game"
+            },
+            {
+                "id": "every_noise",
+                "name": "Every Noise",
+                "description": "Participant must immediately check out every in-game noise (3 Minutes Duration)",
+                "type": "in_game"
+            },
+            {
+                "id": "no_flashlight",
+                "name": "No Flashlight",
+                "description": "Participant cannot use any lighting source from character (3 Minutes Duration)",
+                "type": "in_game"
             }
         ]
     }
