@@ -105,20 +105,10 @@ exports.Voting = class Voting {
         this.voteDict = votingDictionary;
     }
 
-    callSideVote() {
-        console.log('Calling Side Vote');
-        this.initialiseVotingDictionary();
-        this.bridge.startVoting();
-
-        var t = this;
-        this.vote = setTimeout(
-            function() { t.tallyVotes(); },
-            this.votingInterval
-        );
-    }
-
     callVote() {
         console.log('Calling Vote');
+        if (this.vote != null)
+            return 
         this.initialiseVotingDictionary();
         this.bridge.startVoting();
 
@@ -129,7 +119,6 @@ exports.Voting = class Voting {
             },
             this.votingInterval
         );
-        this.resetTimer();
     }
 
     endVoteEarly() {
