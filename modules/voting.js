@@ -134,8 +134,6 @@ exports.Voting = class Voting {
 
     callVote(tierAdvance=false) {
         console.log('Calling Vote');
-        console.log('Tier: ' + this.tier);
-        console.log('Counter: ' + this.tierCounter);
 
         if (this.vote != null)
             return 
