@@ -1,0 +1,26 @@
+{
+	"token": "",
+
+	"clientId": "",
+	"guildId": "",
+
+	"roleId": "",
+
+	"votingChannelId": "",
+	"interencesJsonFile": "./config/interferences.json",
+	"audioInterencesJsonFile": "./config/audio_only_interferences.json",
+	"betweenVoteTime" : 300000,
+	"votingTime" : 60000,
+	"tierMaxCount" : 2,
+
+	"audiointfstoggle": "",
+	"callvoteId": "",
+	"disconnectId": "",
+	"joinchannelId": "",
+	"pauseId": "",
+	"playId": "",
+	"setinterferences": "",
+	"startvotingId": "",
+	"stopId": "",
+	"stopvotingId": ""
+}
