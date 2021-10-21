@@ -1,0 +1,60 @@
+{
+    "voting": {
+        "tier_1_voting": [
+            {
+                "id": "sound_all",
+                "name": "Random Sound",
+                "description": "Plays a random sound cue from all available Tiers",
+                "type": "sound",
+                "audio_category": "all"
+            },
+            {
+                "id": "sound_voice",
+                "name": "Voice Sound",
+                "description": "Plays a voice sound cue",
+                "type": "sound",
+                "audio_category": "voice"
+            },
+            {
+                "id": "sound_animal",
+                "name": "Animal Sound",
+                "description": "Plays an animal sound cue",
+                "type": "sound",
+                "audio_category": "animal"
+            },
+            {
+                "id": "sound_ambient",
+                "name": "Ambient Droning Sound",
+                "description": "Plays a long ambient sound cue",
+                "type": "sound",
+                "audio_category": "ambient"
+            }
+        ],
+        "tier_2_voting": [
+            {
+                "id": "sound_crash",
+                "name": "Crashing Sound",
+                "description": "Plays a crashing sound cue",
+                "type": "sound",
+                "audio_category": "crash"
+            },
+            {
+                "id": "sound_scream",
+                "name": "Scream Sound",
+                "description": "Plays a scream sound cue",
+                "type": "sound",
+                "audio_category": "scream"
+            }
+        ],
+        "tier_3_voting": [
+            {
+                "id": "sound_music",
+                "name": "Music",
+                "description": "Plays a random music song",
+                "type": "sound",
+                "audio_category": "music"
+            }
+        ]
+    }
+	
+}

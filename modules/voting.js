@@ -1,5 +1,6 @@
 const { 
-    votingJsonFile,
+    interencesJsonFile,
+    audioInterencesJsonFile,
     betweenVoteTime,
     votingTime,
     tierMaxCount
@@ -14,6 +15,10 @@ exports.Voting = class Voting {
 
     get isChallengesActive() {
         return this.timer != null;
+    }
+
+    get isDefaultInterferences() {
+        return (this.fileName == interencesJsonFile || this.fileName == audioInterencesJsonFile);
     }
 
     get votingTimeLeft() {
@@ -37,19 +42,17 @@ exports.Voting = class Voting {
     }
 
     constructor() {
-        this.fileName = votingJsonFile;
-
         this.betweenVoteInterval = betweenVoteTime;
         this.votingInterval = votingTime;
 
-        this.readVoteFile();
-        this.initialiseTier();
+        this.setFile(interencesJsonFile);
     }
 
     readVoteFile() {
         console.log(`Reading from file ${this.fileName}`);
         const voting = fs.readFileSync(this.fileName);
         this.votingJSON = JSON.parse(voting);
+        this.initialiseTier();
     }
 
     setBridge(bridge) {
@@ -57,8 +60,31 @@ exports.Voting = class Voting {
     }
 
     setFile(fileName) {
-        this.fileName = fileName;
+        const currentFile = this.fileName;
+        try {
+            this.fileName = fileName;
+            this.readVoteFile();
+            return true;
+        } catch(err) {
+            this.fileName = currentFile;
+            return false;
+        }
+    }
+
+    resetFile() {
+        this.setFile(interencesJsonFile);
+    }
+
+    toggleAudioOnly() {
+        var audioOnly = false;
+        if (this.fileName === interencesJsonFile) {
+            this.fileName = audioInterencesJsonFile;
+            var audioOnly = true;
+        } else if (this.fileName === audioInterencesJsonFile) {
+            this.fileName = interencesJsonFile;
+        }
         this.readVoteFile();
+        return audioOnly;
     }
 
     setBetweenVoteTime(interval) {
@@ -199,13 +225,11 @@ exports.Voting = class Voting {
     resetVoting() {
         this.stopTimer();
         this.readVoteFile();
-        this.initialiseTier();
         this.startTimer();
     }
 
     startVoting() {
         this.readVoteFile();
-        this.initialiseTier();
         this.startTimer();
     }
 

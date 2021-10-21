@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token, guildId, roleId,
-	callvoteId,disconnectId,joinchannelId,pauseId,playId,startvotingId,stopId,stopvotingId 
+	audiointfstoggle,callvoteId,disconnectId,joinchannelId,pauseId,playId,setinterferences,startvotingId,stopId,stopvotingId 
 } = require('./config/config.json');
 const { Voice } = require('./modules/voice.js');
 const { Voting } = require('./modules/voting.js');
@@ -20,6 +20,14 @@ for (const file of commandFiles) {
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
 	const fullPermissions = [
+		{
+			id: audiointfstoggle, //audiointfstoggle
+			permissions: [{
+				id: roleId,
+				type: 'ROLE',
+				permission: true,
+			}],
+		},
 		{
 			id: callvoteId, //callvote
 			permissions: [{
@@ -62,6 +70,14 @@ client.once('ready', () => {
 		},
 		{
 			id: startvotingId, //startvoting
+			permissions: [{
+				id: roleId,
+				type: 'ROLE',
+				permission: true,
+			}],
+		},
+		{
+			id: setinterferences, //setinterferences
 			permissions: [{
 				id: roleId,
 				type: 'ROLE',

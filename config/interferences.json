@@ -4,7 +4,7 @@
             {
                 "id": "sound_all",
                 "name": "Random Sound",
-                "description": "Plays a random sound cue",
+                "description": "Plays a random sound cue from all available Tiers",
                 "type": "sound",
                 "audio_category": "all"
             },
@@ -33,12 +33,6 @@
                 "id": "no_swear",
                 "name": "No Swearing Challenge",
                 "description": "Participant is not allowed to swear (3 Minutes Duration)",
-                "type": "external"
-            },
-            {
-                "id": "close_eye",
-                "name": "Close Eye",
-                "description": "Participant must close one eye (3 Minutes Duration)",
                 "type": "external"
             }
         ],
@@ -107,6 +101,12 @@
                 "name": "No Flashlight",
                 "description": "Participant cannot use any lighting source from character (3 Minutes Duration)",
                 "type": "in_game"
+            },
+            {
+                "id": "cross_hands",
+                "name": "Cross Hands",
+                "description": "Participant must cross hands while playing (3 Minutes Duration)",
+                "type": "external"
             }
         ]
     }
