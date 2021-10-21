@@ -52,7 +52,6 @@ exports.Voting = class Voting {
         console.log(`Reading from file ${this.fileName}`);
         const voting = fs.readFileSync(this.fileName);
         this.votingJSON = JSON.parse(voting);
-        this.initialiseTier();
     }
 
     setBridge(bridge) {
@@ -64,6 +63,7 @@ exports.Voting = class Voting {
         try {
             this.fileName = fileName;
             this.readVoteFile();
+            this.initialiseTier();
             return true;
         } catch(err) {
             this.fileName = currentFile;
@@ -84,6 +84,7 @@ exports.Voting = class Voting {
             this.fileName = interencesJsonFile;
         }
         this.readVoteFile();
+        this.initialiseTier();
         return audioOnly;
     }
 
@@ -106,18 +107,18 @@ exports.Voting = class Voting {
 
     initialiseTier() {
         this.tier = 1;
-        this.tierCounter = 0;
+        this.tierCounter = 1;
         this.setVotingForTier();
     }
 
     advanceTier() {
-        if (this.tierCounter > tierMaxCount) {
+        if (this.tierCounter >= tierMaxCount) {
             if (this.tier == 3) {
                 return;
             }
             this.tier = this.tier + 1;
             this.setVotingForTier();
-            this.tierCounter = 0;
+            this.tierCounter = 1;
         } else
             this.tierCounter++;
     }
@@ -131,8 +132,11 @@ exports.Voting = class Voting {
         this.voteDict = votingDictionary;
     }
 
-    callVote() {
+    callVote(tierAdvance=false) {
         console.log('Calling Vote');
+        console.log('Tier: ' + this.tier);
+        console.log('Counter: ' + this.tierCounter);
+
         if (this.vote != null)
             return 
         this.initialiseVotingDictionary();
@@ -141,15 +145,10 @@ exports.Voting = class Voting {
         var t = this;
         this.vote = setTimeout(
             function() { 
-                t.finishVote(t.tallyVotes());
+                t.finishVote(t.tallyVotes(tierAdvance));
             },
             this.votingInterval
         );
-    }
-
-    endVoteEarly() {
-        this.tallyVotes();
-        clearTimeout(this.vote);
     }
 
     castVote(vote_id, voter) {
@@ -160,7 +159,7 @@ exports.Voting = class Voting {
         return this.voteList.filter(d => d.id == vote_id)[0];
     }
 
-    tallyVotes() {
+    tallyVotes(tierAdvance) {
         console.log('Tallying Votes');
         var entry = '';
         var maxVotes = 0;
@@ -184,7 +183,8 @@ exports.Voting = class Voting {
 
         this.vote = null;
         this.voteDict = null;
-        this.advanceTier();
+        if (tierAdvance) 
+            this.advanceTier();
 
         return {entry, maxVotes, tied};
     }
@@ -203,7 +203,7 @@ exports.Voting = class Voting {
         this.stopTimer(); // Stop timer if timer active
         var t = this;
         this.timer = setInterval(
-            function() { t.callVote(); },
+            function() { t.callVote(true); },
             this.betweenVoteInterval
         );
     }
@@ -225,11 +225,13 @@ exports.Voting = class Voting {
     resetVoting() {
         this.stopTimer();
         this.readVoteFile();
+        this.initialiseTier();
         this.startTimer();
     }
 
     startVoting() {
         this.readVoteFile();
+        this.initialiseTier();
         this.startTimer();
     }
 
