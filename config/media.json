@@ -1,12 +1,6 @@
 {
     "media": [
         {
-            "name": "I See You (Sean)",
-            "source": "iseeyou.mp3",
-            "category": "voice",
-            "tier": 1
-        },
-        {
             "name": "I See You (Hidden)",
             "source": "iseeyou2.mp3",
             "category": "voice",
