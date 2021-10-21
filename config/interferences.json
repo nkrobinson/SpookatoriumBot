@@ -42,7 +42,7 @@
                 "name": "Crashing Sound",
                 "description": "Plays a crashing sound cue",
                 "type": "sound",
-                "audio_category": "crash"
+                "audio_category": "alarming"
             },
             {
                 "id": "sound_scream",
