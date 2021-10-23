@@ -1,14 +1,86 @@
 {
     "media": [
         {
-            "name": "I See You (Sean)",
+            "name": "I See You (Hidden)",
             "source": "iseeyou.mp3",
             "category": "voice",
             "tier": 1
         },
         {
-            "name": "I See You (Hidden)",
+            "name": "I See You (Monster)",
             "source": "iseeyou2.mp3",
+            "category": "voice",
+            "tier": 1
+        },
+        {
+            "name": "Monster (Laugh)",
+            "source": "monsterlaugh.mp3",
+            "category": "voice",
+            "tier": 1
+        },
+        {
+            "name": "Monster (Laugh 2)",
+            "source": "monsterlaugh2.mp3",
+            "category": "voice",
+            "tier": 1
+        },
+        {
+            "name": "Monster (Laugh 3)",
+            "source": "monsterlaugh3.mp3",
+            "category": "voice",
+            "tier": 1
+        },
+        {
+            "name": "Monster (Breath 1)",
+            "source": "monsterbreath.mp3",
+            "category": "voice",
+            "tier": 1
+        },
+        {
+            "name": "Monster (Breath 2)",
+            "source": "monsterbreath2.mp3",
+            "category": "voice",
+            "tier": 1
+        },
+        {
+            "name": "Monster (Hurt)",
+            "source": "monsterhurt.mp3",
+            "category": "voice",
+            "tier": 1
+        },
+        {
+            "name": "Monster (Alien)",
+            "source": "monsteralien.mp3",
+            "category": "voice",
+            "tier": 1
+        },
+        {
+            "name": "Voice",
+            "source": "voice.mp3",
+            "category": "voice",
+            "tier": 1
+        },
+        {
+            "name": "Voice 2",
+            "source": "voice2.mp3",
+            "category": "voice",
+            "tier": 1
+        },
+        {
+            "name": "Voice 3",
+            "source": "voice3.mp3",
+            "category": "voice",
+            "tier": 1
+        },
+        {
+            "name": "Voice 4",
+            "source": "voice4.mp3",
+            "category": "voice",
+            "tier": 1
+        },
+        {
+            "name": "Voice 5",
+            "source": "voice5.mp3",
             "category": "voice",
             "tier": 1
         },
@@ -37,8 +109,98 @@
             "tier": 1
         },
         {
+            "name": "Dogs",
+            "source": "dogs.mp3",
+            "category": "animal",
+            "tier": 1
+        },
+        {
+            "name": "Bear",
+            "source": "bear.mp3",
+            "category": "animal",
+            "tier": 1
+        },
+        {
+            "name": "Bees",
+            "source": "bees.mp3",
+            "category": "animal",
+            "tier": 1
+        },
+        {
+            "name": "Birds",
+            "source": "birds.mp3",
+            "category": "animal",
+            "tier": 1
+        },
+        {
+            "name": "Roar",
+            "source": "roar.mp3",
+            "category": "animal",
+            "tier": 1
+        },
+        {
             "name": "Crash",
             "source": "crash.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Creak",
+            "source": "creak.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Chalkboard",
+            "source": "chalkboard.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Smash",
+            "source": "smash.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Smash 2",
+            "source": "smash2.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Smash 3",
+            "source": "smash3.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Snap",
+            "source": "snap.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Snap 2",
+            "source": "snap2.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Monster (Bubbling)",
+            "source": "monsterbubble.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Monster (Screech)",
+            "source": "monsterscreech.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Monster (Roar)",
+            "source": "monsterroar.mp3",
             "category": "alarming",
             "tier": 2
         },
@@ -47,6 +209,148 @@
             "source": "ambient1.mp3",
             "category": "ambient",
             "tier": 1
+        },
+        {
+            "name": "Ambient 2",
+            "source": "ambient2.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Ambient 3",
+            "source": "ambient3.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Rumble",
+            "source": "rumble.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Drip",
+            "source": "drip.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Static Shaking",
+            "source": "staticshake.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Underwater",
+            "source": "underwater.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Wind",
+            "source": "wind.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Wind 2",
+            "source": "wind2.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Wind 3",
+            "source": "wind3.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Wire",
+            "source": "wire.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+
+
+        {
+            "name": "New Hockey Mask",
+            "source": "hockeymask.mp3",
+            "category": "misc",
+            "tier": 3
+        },
+        {
+            "name": "Chuckle",
+            "source": "chuckle.mp3",
+            "category": "misc",
+            "tier": 3
+        },
+
+
+        {
+            "name": "Come Play With Me",
+            "source": "comeplaywithme.mp3",
+            "category": "music",
+            "tier": 3
+        },
+        {
+            "name": "Creepy Vibes",
+            "source": "creepyvibes.mp3",
+            "category": "music",
+            "tier": 3
+        },
+        {
+            "name": "Evil Rising",
+            "source": "evilrising.mp3",
+            "category": "music",
+            "tier": 3
+        },
+        {
+            "name": "facetoface",
+            "source": "facetoface.mp3",
+            "category": "music",
+            "tier": 3
+        },
+        {
+            "name": "It Is Coming",
+            "source": "itiscoming.mp3",
+            "category": "music",
+            "tier": 3
+        },
+        {
+            "name": "Lurking Evil",
+            "source": "lurkingevil.mp3",
+            "category": "music",
+            "tier": 3
+        },
+        {
+            "name": "Monster In The Field",
+            "source": "monsterinthefield.mp3",
+            "category": "music",
+            "tier": 3
+        },
+        {
+            "name": "Musicbox",
+            "source": "musicbox.mp3",
+            "category": "music",
+            "tier": 3
+        },
+        {
+            "name": "Musicbox 2",
+            "source": "musicbox2.mp3",
+            "category": "music",
+            "tier": 3
+        },
+        {
+            "name": "Ticking",
+            "source": "ticking.mp3",
+            "category": "music",
+            "tier": 3
+        },
+        {
+            "name": "Wormhole",
+            "source": "wormhole.mp3",
+            "category": "music",
+            "tier": 3
         }
     ]
 }
