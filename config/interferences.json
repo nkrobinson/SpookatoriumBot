@@ -31,7 +31,7 @@
             },
             {
                 "id": "no_swear",
-                "name": "No Swearing Challenge",
+                "name": "Wash Your Mouth Out",
                 "description": "Participant is not allowed to swear (3 Minutes Duration)",
                 "type": "external"
             }
@@ -59,19 +59,19 @@
             },
             {
                 "id": "no_stop",
-                "name": "No Stopping",
+                "name": "Don't Stop Me Now",
                 "description": "Participant must not stop moving for (3 Minutes Duration)",
                 "type": "in_game"
             },
             {
                 "id": "low_sens",
-                "name": "Low Sensitivity",
+                "name": "Lead Boots",
                 "description": "Participant must lower move/look sensitivity as low as it can go for (3 Minutes Duration)",
                 "type": "in_game"
             },
             {
                 "id": "only_left",
-                "name": "Only Left Turns",
+                "name": "Portside Shuffle",
                 "description": "Whenever turning, the Participant must only turn left (3 Minutes Duration)",
                 "type": "in_game"
             }
@@ -86,25 +86,25 @@
             },
             {
                 "id": "walk_backwards",
-                "name": "Only Backwards Walking",
+                "name": "Back It Up",
                 "description": "Participant can only walk backwards (3 Minutes Duration)",
                 "type": "in_game"
             },
             {
                 "id": "every_noise",
-                "name": "Every Noise",
+                "name": "Curiosity",
                 "description": "Participant must immediately check out every in-game noise (3 Minutes Duration)",
                 "type": "in_game"
             },
             {
                 "id": "no_flashlight",
-                "name": "No Flashlight",
+                "name": "See No Evil",
                 "description": "Participant cannot use any lighting source from character (3 Minutes Duration)",
                 "type": "in_game"
             },
             {
                 "id": "cross_hands",
-                "name": "Cross Hands",
+                "name": "AntiDextrous",
                 "description": "Participant must cross hands while playing (3 Minutes Duration)",
                 "type": "external"
             }
