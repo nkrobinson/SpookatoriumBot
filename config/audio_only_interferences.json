@@ -24,8 +24,8 @@
             },
             {
                 "id": "sound_ambient",
-                "name": "Ambient Droning Sound",
-                "description": "Plays a long ambient sound cue",
+                "name": "Ambient Sound",
+                "description": "Plays an ambient ambient sound cue",
                 "type": "sound",
                 "audio_category": "ambient"
             }
@@ -33,8 +33,8 @@
         "tier_2_voting": [
             {
                 "id": "sound_crash",
-                "name": "Crashing Sound",
-                "description": "Plays a crashing sound cue",
+                "name": "Alarming Sound",
+                "description": "Plays an alarming sound cue",
                 "type": "sound",
                 "audio_category": "alarming"
             },
@@ -49,8 +49,8 @@
         "tier_3_voting": [
             {
                 "id": "sound_music",
-                "name": "Music",
-                "description": "Plays a random music song",
+                "name": "Spooky Music",
+                "description": "Plays a random horror music song",
                 "type": "sound",
                 "audio_category": "music"
             }
