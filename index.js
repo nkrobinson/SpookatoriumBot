@@ -108,37 +108,52 @@ client.once('ready', () => {
 });
 
 client.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
+	if (interaction.isCommand()) {
+		const command = client.commands.get(interaction.commandName);
 
-	const command = client.commands.get(interaction.commandName);
+		if (!command) return;
 
-	if (!command) return;
-
-	try {
-		await command.execute({
-			interaction : interaction,
-			voice : voice,
-			voting : voting
-		});
-	} catch (error) {
-		console.error(error);
-		return interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		try {
+			await command.execute({
+				interaction : interaction,
+				voice : voice,
+				voting : voting
+			});
+		} catch (error) {
+			console.error(error);
+			return interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		}
 	}
-});
 
-client.on('interactionCreate', interaction => {
-	if (!interaction.isSelectMenu())
-		return;
+	if (interaction.isSelectMenu()) {
 
-	if (interaction.customId === 'select') {
-		if (!voting.isCurrentlyVoting) {
-			interaction.update({ content: 'There is no active vote currently', components: [] });
-			return;
+		if (interaction.customId === 'select') {
+			if (!voting.isCurrentlyVoting) {
+				interaction.update({ content: 'There is no active vote currently', components: [] });
+				return;
+			}
+	
+			voting.castVote(interaction.values, interaction.user.id);
+			console.log(`Vote Counted: ${voting.getVoteDetails(interaction.values).name}`);
+			interaction.update({ content: 'Your vote has been counted', components: [] });
 		}
 
-		voting.castVote(interaction.values, interaction.user.id);
-		console.log(`Vote Counted: ${voting.getVoteDetails(interaction.values).name}`);
-		interaction.update({ content: 'Your vote has been counted', components: [] });
+	}
+
+	if (interaction.isButton()) {
+		const command = client.commands.get(interaction.customId);
+		if (!command) return;
+
+		try {
+			await command.execute({
+				interaction : interaction,
+				voice : voice,
+				voting : voting
+			});
+		} catch (error) {
+			console.error(error);
+			return interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		}
 	}
 });
 

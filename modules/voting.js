@@ -22,7 +22,7 @@ exports.Voting = class Voting {
     }
 
     get votingTimeLeft() {
-        return Math.ceil((this.vote._idleStart + this.vote._idleTimeout - Date.now()) / 1000);
+        return Math.ceil((this.vote._idleTimeout - (Date.now() - this.vote.startTime)) / 1000);
     }
 
     get timeUntilNextChallenge() {
@@ -146,7 +146,8 @@ exports.Voting = class Voting {
                 t.finishVote(t.tallyVotes(tierAdvance));
             },
             this.votingInterval
-        );
+        )
+        this.vote.startTime = Date.now();
     }
 
     castVote(vote_id, voter) {
