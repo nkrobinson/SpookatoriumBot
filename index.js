@@ -19,90 +19,22 @@ for (const file of commandFiles) {
 
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
-	const fullPermissions = [
-		{
-			id: audiointfstoggle, //audiointfstoggle
-			permissions: [{
-				id: roleId,
-				type: 'ROLE',
-				permission: true,
-			}],
-		},
-		{
-			id: callvoteId, //callvote
-			permissions: [{
-				id: roleId,
-				type: 'ROLE',
-				permission: true,
-			}],
-		},
-		{
-			id: disconnectId, //disconnect
-			permissions: [{
-				id: roleId,
-				type: 'ROLE',
-				permission: true,
-			}],
-		},
-		{
-			id: joinchannelId, //joinchannel
-			permissions: [{
-				id: roleId,
-				type: 'ROLE',
-				permission: true,
-			}],
-		},
-		{
-			id: pauseId, //pause
-			permissions: [{
-				id: roleId,
-				type: 'ROLE',
-				permission: true,
-			}],
-		},
-		{
-			id: playId, //play
-			permissions: [{
-				id: roleId,
-				type: 'ROLE',
-				permission: true,
-			}],
-		},
-		{
-			id: startvotingId, //startvoting
-			permissions: [{
-				id: roleId,
-				type: 'ROLE',
-				permission: true,
-			}],
-		},
-		{
-			id: setinterferences, //setinterferences
-			permissions: [{
-				id: roleId,
-				type: 'ROLE',
-				permission: true,
-			}],
-		},
-		{
-			id: stopId, //stop
-			permissions: [{
-				id: roleId,
-				type: 'ROLE',
-				permission: true,
-			}],
-		},
-		{
-			id: stopvotingId, //stopvoting
-			permissions: [{
-				id: roleId,
-				type: 'ROLE',
-				permission: true,
-			}],
-		}
-	];
-	
-	client.guilds.cache.get(guildId)?.commands.permissions.set({fullPermissions});
+
+    // Add permissions for Admin only commands
+    client.guilds.cache.get(guildId)?.commands.fetch().then(collection => {
+        collection.forEach(command => {
+            if(!command.defaultPermission){
+				console.log(`Set ${command.name} permission`);
+				client.guilds.cache.get(guildId)?.commands.permissions.set({command: command.id, permissions: [
+                    {
+						id: roleId,
+						type: 'ROLE',
+						permission: true,
+                    }
+                ]}).catch(console.log);
+            }
+        });
+    }).catch(console.log);
 
 	console.log('Ready!');
 });
