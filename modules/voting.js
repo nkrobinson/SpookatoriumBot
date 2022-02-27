@@ -202,8 +202,11 @@ exports.Voting = class Voting {
         this.stopTimer(); // Stop timer if timer active
         var t = this;
         this.timer = setInterval(
-            function() { t.callVote(true); },
-            this.betweenVoteInterval
+            function() { 
+                t.callVote(true);
+                t.resetTimer();
+            }
+           ,this.betweenVoteInterval
         );
         this.timer.startTime = Date.now();
     }
@@ -212,7 +215,6 @@ exports.Voting = class Voting {
         if (this.timer != null) {
             clearInterval(this.timer);
             this.timer = null;
-            this.timer.startTime = null;
         }
     }
 
@@ -220,7 +222,6 @@ exports.Voting = class Voting {
         if (this.vote != null) {
             clearInterval(this.vote);
             this.vote = null;
-            this.vote.startTime = null;
         }
     }
 
