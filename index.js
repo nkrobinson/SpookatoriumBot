@@ -1,8 +1,6 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
-const { token, guildId, roleId,
-	audiointfstoggle,callvoteId,disconnectId,joinchannelId,pauseId,playId,setinterferences,startvotingId,stopId,stopvotingId 
-} = require('./config/config.json');
+const { token, guildId, roleId } = require('./config/config.json');
 const { Voice } = require('./modules/voice.js');
 const { Voting } = require('./modules/voting.js');
 const { Bridge } = require('./modules/bridge.js');
