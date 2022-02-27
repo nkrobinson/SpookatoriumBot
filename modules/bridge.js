@@ -42,15 +42,26 @@ exports.Bridge = class Bridge {
 					.setStyle('PRIMARY'),
 			);
         const channel = this.client.channels.cache.get(this.channelId)
-        const promise = channel.send({ content: `Voting has started!\nClick the Vote button for an interference for the Participant\nYou have ${votingTime/1000} seconds left`, components: [row] });
+        const promise = channel.send({
+            content: `Voting has started!\nClick the Vote button for an interference for the Participant\nYou have ${votingTime/1000} seconds left (may have up to a 5 second delay)`
+           ,components: [row] 
+        });
         const voting = this.voting;
         promise.then(
             function(msg) {
                 const timer = setInterval(() => {
-                    if (voting.isCurrentlyVoting)
-                        msg.edit({ content: `Voting has started!\nClick the Vote button for an interference for the Participant\nYou have ${voting.votingTimeLeft} seconds left`, components: [row] })
-                    else
-                        msg.edit({ content: `Voting has finished`, components: [] });
+                    if (voting.vote != null) {
+                        msg.edit({ 
+                            content: `Voting has started!\nClick the Vote button for an interference for the Participant\nYou have ${voting.votingTimeLeft} seconds left (may have up to a 5 second delay)`
+                           ,components: [row] 
+                        })
+                    } else {
+                        msg.edit({ 
+                            content: `Voting has finished`
+                           ,components: [] 
+                        });
+                        clearInterval(timer);
+                    }
                 }, 1000);
 
             },

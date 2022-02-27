@@ -26,7 +26,7 @@ exports.Voting = class Voting {
     }
 
     get timeUntilNextChallenge() {
-        return Math.ceil((this.timer._idleStart + this.timer._idleTimeout - Date.now()) / 1000);
+        return Math.ceil((this.timer._idleTimeout - (Date.now() - this.timer.startTime)) / 1000);
     }
 
     get votingOptionsJSON() {
@@ -136,7 +136,7 @@ exports.Voting = class Voting {
         console.log('Calling Vote');
 
         if (this.vote != null)
-            return 
+            return;
         this.initialiseVotingDictionary();
         this.bridge.startVoting();
 
@@ -202,9 +202,13 @@ exports.Voting = class Voting {
         this.stopTimer(); // Stop timer if timer active
         var t = this;
         this.timer = setInterval(
-            function() { t.callVote(true); },
-            this.betweenVoteInterval
+            function() { 
+                t.callVote(true);
+                t.resetTimer();
+            }
+           ,this.betweenVoteInterval
         );
+        this.timer.startTime = Date.now();
     }
 
     stopTimer() {
