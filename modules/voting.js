@@ -96,19 +96,29 @@ exports.Voting = class Voting {
         this.votingInterval = interval;
     }
 
+    setVotingList() {
+        this.setVotingForTier();
+        this.limitVotingOptions();
+    }
+
     setVotingForTier() {
         // Tier Minimum is 1;
-        this.voteList = this.votingJSON.voting.tier_1_voting;
+        this.fullVoteList = this.votingJSON.voting.tier_1_voting;
         if (this.tier > 1)
-            this.voteList = this.voteList.concat(this.votingJSON.voting.tier_2_voting);
+            this.fullVoteList = this.fullVoteList.concat(this.votingJSON.voting.tier_2_voting);
         if (this.tier > 2)
-            this.voteList = this.voteList.concat(this.votingJSON.voting.tier_3_voting);
+            this.fullVoteList = this.fullVoteList.concat(this.votingJSON.voting.tier_3_voting);
+    }
+
+    limitVotingOptions() {
+        const shuffled = this.fullVoteList.sort(() => 0.5 - Math.random());
+        this.voteList = shuffled.slice(0, 5);
     }
 
     initialiseTier() {
         this.tier = 1;
         this.tierCounter = 1;
-        this.setVotingForTier();
+        this.setVotingList();
     }
 
     advanceTier() {
@@ -117,7 +127,7 @@ exports.Voting = class Voting {
                 return;
             }
             this.tier = this.tier + 1;
-            this.setVotingForTier();
+            this.setVotingList();
             this.tierCounter = 1;
         } else
             this.tierCounter++;
@@ -137,6 +147,7 @@ exports.Voting = class Voting {
 
         if (this.vote != null)
             return;
+        this.limitVotingOptions();
         this.initialiseVotingDictionary();
         this.bridge.startVoting();
 
