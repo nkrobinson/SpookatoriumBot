@@ -149,6 +149,7 @@ exports.Voting = class Voting {
             return;
         this.limitVotingOptions();
         this.initialiseVotingDictionary();
+        this.voterList = [];
         this.bridge.startVoting();
 
         var t = this;
@@ -161,8 +162,24 @@ exports.Voting = class Voting {
         this.vote.startTime = Date.now();
     }
 
-    castVote(vote_id, voter) {
-        this.voteDict[vote_id].add(voter);
+    castVote(vote_id, user) {
+        this.clearVotes(user);
+        this.voteDict[vote_id].add(user);
+    }
+
+    clearVotes(user) {
+        // If user has previously voted in current vote, remove old vote
+        if (this.voterList.includes(user)) {
+            for (const key of Object.keys(this.voteDict)) {
+                if (this.voteDict[key].has(user)) {
+                    this.voteDict[key].delete(user);
+                    return;
+                }
+            }
+        }
+        // Voter is not in Voter list.
+        // Add voter to Voter list.
+        this.voterList.push(user);
     }
 
     getVoteDetails(vote_id) {
