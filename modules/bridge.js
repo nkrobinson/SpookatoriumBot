@@ -21,7 +21,6 @@ exports.Bridge = class Bridge {
     }
 
     voteFinish(winner, votes, tied) {
-        console.log(winner);
         const channel = this.client.channels.cache.get(this.channelId)
 
         if (votes === 0 )
@@ -44,7 +43,7 @@ exports.Bridge = class Bridge {
 
                 if (winner.challenge_end != null) {
                     const timer = setInterval(() => {
-                        if (this.remainingChallengeTime <= 0) {
+                        if (this.challenge.remainingChallengeTime <= 0) {
                             this.playVoteAudio(winner.challenge_end);
                             clearInterval(timer);
                         }
