@@ -21,8 +21,9 @@ exports.Challenge = class Challenge {
         this.startTimer(challenge.time);
 
         //Output Challenge name to file
-        
+        this.writeChallengeToFile(challenge.name);
         //Output Challenge timer to file
+        this.writeTimerToFile();
     }
 
     setOutputFile(nameOutputFile, timeOutputFile) {
@@ -30,6 +31,7 @@ exports.Challenge = class Challenge {
         this.timeOutputFile = timeOutputFile;
     }
 
+    // Does this even need to be here if challenge is getting passed in as a JSON object?
     loadInterferences(interencesFile) {
         console.log(`Reading from file ${interencesFile}`);
         const voting = fs.readFileSync(interencesFile);
@@ -39,6 +41,51 @@ exports.Challenge = class Challenge {
     startTimer(duration) {
         this.timerStartTime = Date.now();
         this.timerDuration = duration;
+    }
+
+    writeChallengeToFile(name) {
+        fs.writeFile(this.nameOutputFile, name, err => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            //file written successfully
+          });
+    }
+
+    clearFiles() {
+        fs.writeFile(this.nameOutputFile, '', err => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            //file written successfully
+        });
+        fs.writeFile(this.timeOutputFile, '', err => {
+            if (err) {
+            console.error(err);
+            return;
+            }
+            //file written successfully
+        });
+    }
+
+    writeTimerToFile() {
+        const timer = setInterval(() => {
+            if (this.remainingChallengeTime <= 0) {
+                this.clearFiles();
+                clearInterval(timer);
+            } else {
+                const content = `${this.remainingChallengeTime} Seconds Left`;
+                fs.writeFile(this.timeOutputFile, content, err => {
+                    if (err) {
+                    console.error(err);
+                    return;
+                    }
+                    //file written successfully
+                });
+            }
+        }, 1000);
     }
 
 }
