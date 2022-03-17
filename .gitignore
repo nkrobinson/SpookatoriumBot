@@ -108,3 +108,6 @@ config.json
 
 # Media Files
 /media/*
+
+# Challenge Output
+/output/*
