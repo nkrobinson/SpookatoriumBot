@@ -1,5 +1,6 @@
 const { MessageActionRow, MessageButton } = require('discord.js');
 const { votingChannelId,votingTime } = require('../config/config.json');
+const { Challenge } = require('./challenge');
 
 exports.Bridge = class Bridge {
 
@@ -10,6 +11,8 @@ exports.Bridge = class Bridge {
 
         this.voting.setBridge(this);
 
+        this.challenge = new Challenge();
+
         this.channelId = votingChannelId;
     }
 
@@ -18,6 +21,7 @@ exports.Bridge = class Bridge {
     }
 
     voteFinish(winner, votes, tied) {
+        console.log(winner);
         const channel = this.client.channels.cache.get(this.channelId)
 
         if (votes === 0 )
@@ -28,8 +32,27 @@ exports.Bridge = class Bridge {
         else
             channel.send(`Voting has Finished. \n${winner.name} won with ${votes} votes.`);
 
-        if (winner.audio_category != null) {
-            this.playVoteAudio(winner.audio_category)
+        switch (winner.type) {
+            case "sound":
+                this.playVoteAudio(winner.audio_category);
+                break;
+            case "challenge":
+                if (winner.challenge_start != null)
+                    this.playVoteAudio(winner.challenge_start);
+
+                this.challenge.startChallenge(winner.id);
+
+                if (winner.challenge_end != null) {
+                    const timer = setInterval(() => {
+                        if (this.remainingChallengeTime <= 0) {
+                            this.playVoteAudio(winner.challenge_end);
+                            clearInterval(timer);
+                        }
+                    }, 1000);
+                }
+                break;
+            default:
+                console.log(`unexpected interference type: ${winner.type}`);
         }
     }
 
