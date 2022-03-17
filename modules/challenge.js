@@ -6,6 +6,7 @@ exports.Challenge = class Challenge {
     constructor() {
         this.setOutputFile(challengeNameFile,challengeTimeFile);
         this.loadInterferences(interencesJsonFile);
+        this.clearFiles();
     }
 
     get challengeActive() {
