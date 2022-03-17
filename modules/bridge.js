@@ -39,7 +39,7 @@ exports.Bridge = class Bridge {
                 if (winner.challenge_start != null)
                     this.playVoteAudio(winner.challenge_start);
 
-                this.challenge.startChallenge(winner.id);
+                this.challenge.startChallenge(winner);
 
                 if (winner.challenge_end != null) {
                     const timer = setInterval(() => {
