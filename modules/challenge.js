@@ -5,7 +5,6 @@ exports.Challenge = class Challenge {
 
     constructor() {
         this.setOutputFile(challengeNameFile,challengeTimeFile);
-        this.loadInterferences(interencesJsonFile);
         this.clearFiles();
     }
 
@@ -30,13 +29,6 @@ exports.Challenge = class Challenge {
     setOutputFile(nameOutputFile, timeOutputFile) {
         this.nameOutputFile = nameOutputFile;
         this.timeOutputFile = timeOutputFile;
-    }
-
-    // Does this even need to be here if challenge is getting passed in as a JSON object?
-    loadInterferences(interencesFile) {
-        console.log(`Reading from file ${interencesFile}`);
-        const voting = fs.readFileSync(interencesFile);
-        this.interferenceJSON = JSON.parse(voting);
     }
 
     startTimer(duration) {
