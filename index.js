@@ -4,6 +4,7 @@ const { token, guildId, roleId } = require('./config/config.json');
 const { Voice } = require('./modules/voice.js');
 const { Voting } = require('./modules/voting.js');
 const { Bridge } = require('./modules/bridge.js');
+const { Award } = require('./modules/award.js');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES] });
 
@@ -31,8 +32,12 @@ client.once('ready', () => {
                     }
                 ]}).catch(console.log);
             }
+			if (command.name === 'nominate') {
+				award.updateAwardCommand(client, command.id);
+			}
         });
     }).catch(console.log);
+
 
 	console.log('Ready!');
 });
@@ -47,7 +52,8 @@ client.on('interactionCreate', async interaction => {
 			await command.execute({
 				interaction : interaction,
 				voice : voice,
-				voting : voting
+				voting : voting,
+				award : award
 			});
 		} catch (error) {
 			console.error(error);
@@ -87,7 +93,8 @@ client.on('interactionCreate', async interaction => {
 	}
 });
 
+const award = new Award();
 client.login(token);
 const voice = new Voice(client);
 const voting = new Voting();
-bridge = new Bridge(client, voice, voting);
+new Bridge(client, voice, voting);
