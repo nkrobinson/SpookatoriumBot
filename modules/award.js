@@ -19,20 +19,20 @@ exports.Award = class Award {
                 options: [
                     {
                         name: "award",
-                        description: "The Award you would like to nominate a participant for",
+                        description: "The Award you would like to nominate a Victim for",
                         type: 3,
                         required: true,
                         choices: this.awardsJSON
                     },
                     {
-                        name: "participant",
-                        description: "The Participant you are nominating",
+                        name: "victim",
+                        description: "The Victim you are nominating",
                         type: 6,
                         required: true
                     },
                     {
                         name: "reason",
-                        description: "The reason for nominating the person",
+                        description: "The reason for nominating the person for an award",
                         type: 3,
                         required: true
                     }
@@ -41,9 +41,9 @@ exports.Award = class Award {
         )
     }
 
-    addNomination(award, participant, reason, user) {
+    addNomination(award, victim, reason, user) {
         const content = 
-`${user} nominated ${participant} for the ${award} award at ${new Date().toLocaleTimeString()}.
+`${user} nominated ${victim} for the ${award} award at ${new Date().toLocaleTimeString()}.
 Reason: ${reason} \n\n`;
 
         this.writeNominationToFile(content);
