@@ -28,13 +28,6 @@
                 "description": "Plays an ambient ambient sound cue",
                 "type": "sound",
                 "audio_category": "ambient"
-            },
-            {
-                "id": "no_swear",
-                "name": "Wash Your Mouth Out",
-                "description": "Participant is not allowed to swear (3 Minutes Duration)",
-                "type": "challenge",
-                "time": "180000"
             }
         ],
         "tier_2_voting": [
@@ -60,16 +53,18 @@
                 "time": "180000"
             },
             {
-                "id": "no_stop",
-                "name": "Don't Stop Me Now",
-                "description": "Participant must not stop moving for (3 Minutes Duration)",
+                "id": "no_swear",
+                "name": "Wash Your Mouth Out",
+                "description": "Participant is not allowed to swear (3 Minutes Duration)",
                 "type": "challenge",
                 "time": "180000"
-            },
+            }
+        ],
+        "tier_3_voting": [
             {
-                "id": "low_sens",
-                "name": "Lead Boots",
-                "description": "Participant must lower move/look sensitivity as low as it can go for (3 Minutes Duration)",
+                "id": "cross_hands",
+                "name": "AntiDextrous",
+                "description": "Participant must cross hands while playing (3 Minutes Duration)",
                 "type": "challenge",
                 "time": "180000"
             },
@@ -79,41 +74,11 @@
                 "description": "Whenever turning, the Participant must only turn left (3 Minutes Duration)",
                 "type": "challenge",
                 "time": "180000"
-            }
-        ],
-        "tier_3_voting": [
-            {
-                "id": "sound_music",
-                "name": "Spooky Music",
-                "description": "Plays a random horror music song",
-                "type": "sound",
-                "audio_category": "music"
             },
             {
-                "id": "walk_backwards",
-                "name": "Back It Up",
-                "description": "Participant can only walk backwards (3 Minutes Duration)",
-                "type": "challenge",
-                "time": "180000"
-            },
-            {
-                "id": "every_noise",
-                "name": "Curiosity",
-                "description": "Participant must immediately check out every in-game noise (3 Minutes Duration)",
-                "type": "challenge",
-                "time": "180000"
-            },
-            {
-                "id": "no_flashlight",
-                "name": "See No Evil",
-                "description": "Participant cannot use any lighting source from character (3 Minutes Duration)",
-                "type": "challenge",
-                "time": "180000"
-            },
-            {
-                "id": "cross_hands",
-                "name": "AntiDextrous",
-                "description": "Participant must cross hands while playing (3 Minutes Duration)",
+                "id": "no_stop",
+                "name": "Don't Stop Me Now",
+                "description": "Participant must not stop moving for (3 Minutes Duration)",
                 "type": "challenge",
                 "time": "180000"
             }
