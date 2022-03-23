@@ -8,7 +8,7 @@ module.exports = {
 	async execute({interaction, award}={}) {
 
         const awardNom = interaction.options.getString('award');
-        const victim = interaction.options.getUser('victim').username;
+        const victim = interaction.options.getString('victim');
         const reason = interaction.options.getString('reason');
 		const user = interaction.user.username;
 

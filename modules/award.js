@@ -1,4 +1,4 @@
-const { awardsJsonFile, awardsStoreFile, guildId } = require('../config/config.json');
+const { awardsJsonFile, victimsJsonFile, awardsStoreFile, guildId } = require('../config/config.json');
 const fs = require('fs');
 
 exports.Award = class Award {
@@ -6,12 +6,19 @@ exports.Award = class Award {
     constructor() {
         this.resetAwardOutputFile();
         this.readAwardFile();
+        this.readVictimFile();
     }
 
     readAwardFile() {
         console.log(`Reading from file ${awardsJsonFile}`);
         const awardFile = fs.readFileSync(awardsJsonFile);
         this.awardsJSON = JSON.parse(awardFile);
+    }
+
+    readVictimFile() {
+        console.log(`Reading from file ${victimsJsonFile}`);
+        const victimFile = fs.readFileSync(victimsJsonFile);
+        this.victimsJSON = JSON.parse(victimFile);
     }
 
     updateAwardCommand(client, command_id) {
@@ -27,8 +34,9 @@ exports.Award = class Award {
                     {
                         name: "victim",
                         description: "The Victim you are nominating",
-                        type: 6,
-                        required: true
+                        type: 3,
+                        required: true,
+                        choices: this.victimsJSON
                     },
                     {
                         name: "reason",
