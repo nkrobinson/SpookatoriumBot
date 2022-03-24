@@ -381,12 +381,12 @@
             "source": "chuckle.mp3",
             "category": "misc",
             "tier": 3
-        }
+        },
         {
             "name": "New Hockey Mask",
             "source": "hockeymask.mp3",
             "category": "misc",
             "tier": 3
-        },
+        }
     ]
 }
