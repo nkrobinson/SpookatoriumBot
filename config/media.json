@@ -84,6 +84,8 @@
             "category": "voice",
             "tier": 1
         },
+
+
         {
             "name": "Scream 1",
             "source": "scream1.mp3",
@@ -102,18 +104,8 @@
             "category": "scream",
             "tier": 2
         },
-        {
-            "name": "Dog",
-            "source": "dog.mp3",
-            "category": "animal",
-            "tier": 1
-        },
-        {
-            "name": "Dogs",
-            "source": "dogs.mp3",
-            "category": "animal",
-            "tier": 1
-        },
+
+
         {
             "name": "Bear",
             "source": "bear.mp3",
@@ -133,10 +125,30 @@
             "tier": 1
         },
         {
+            "name": "Dog",
+            "source": "dog.mp3",
+            "category": "animal",
+            "tier": 1
+        },
+        {
+            "name": "Dogs",
+            "source": "dogs.mp3",
+            "category": "animal",
+            "tier": 1
+        },
+        {
             "name": "Roar",
             "source": "roar.mp3",
             "category": "animal",
             "tier": 1
+        },
+
+
+        {
+            "name": "Bat Alarm",
+            "source": "bat_alarm.mp3",
+            "category": "alarming",
+            "tier": 2
         },
         {
             "name": "Crash",
@@ -153,6 +165,36 @@
         {
             "name": "Chalkboard",
             "source": "chalkboard.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Monster (Bubbling)",
+            "source": "monsterbubble.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Monster (Screech)",
+            "source": "monsterscreech.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Monster (Roar)",
+            "source": "monsterroar.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Saw",
+            "source": "saw.mp3",
+            "category": "alarming",
+            "tier": 2
+        },
+        {
+            "name": "Saw 2",
+            "source": "saw2.mp3",
             "category": "alarming",
             "tier": 2
         },
@@ -187,21 +229,17 @@
             "tier": 2
         },
         {
-            "name": "Monster (Bubbling)",
-            "source": "monsterbubble.mp3",
+            "name": "Tss Alarm",
+            "source": "tss_alarm.mp3",
             "category": "alarming",
             "tier": 2
         },
+
+
         {
-            "name": "Monster (Screech)",
-            "source": "monsterscreech.mp3",
-            "category": "alarming",
-            "tier": 2
-        },
-        {
-            "name": "Monster (Roar)",
-            "source": "monsterroar.mp3",
-            "category": "alarming",
+            "name": "Alien",
+            "source": "alien.mp3",
+            "category": "ambient",
             "tier": 2
         },
         {
@@ -223,14 +261,74 @@
             "tier": 1
         },
         {
-            "name": "Rumble",
-            "source": "rumble.mp3",
+            "name": "Ambient 4",
+            "source": "ambient4.mp3",
+            "category": "ambient",
+            "tier": 2
+        },
+        {
+            "name": "Ambient 5",
+            "source": "ambient5.mp3",
+            "category": "ambient",
+            "tier": 2
+        },
+        {
+            "name": "Ambient 6",
+            "source": "ambient6.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Dun",
+            "source": "dun.mp3",
             "category": "ambient",
             "tier": 1
         },
         {
             "name": "Drip",
             "source": "drip.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Foosteps Slow",
+            "source": "footsteps_slow.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Foosteps Fast",
+            "source": "footsteps_fast.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Drip",
+            "source": "drip.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Rumble",
+            "source": "rumble.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Saw Ambient",
+            "source": "saw_ambient.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Saw Ambient 2",
+            "source": "saw_ambient2.mp3",
+            "category": "ambient",
+            "tier": 1
+        },
+        {
+            "name": "Squeaky",
+            "source": "squeaky.mp3",
             "category": "ambient",
             "tier": 1
         },
@@ -270,19 +368,25 @@
             "category": "ambient",
             "tier": 1
         },
-
-
         {
-            "name": "New Hockey Mask",
-            "source": "hockeymask.mp3",
-            "category": "misc",
-            "tier": 3
+            "name": "Wobble",
+            "source": "wobble.mp3",
+            "category": "ambient",
+            "tier": 1
         },
+
+
         {
             "name": "Chuckle",
             "source": "chuckle.mp3",
             "category": "misc",
             "tier": 3
         }
+        {
+            "name": "New Hockey Mask",
+            "source": "hockeymask.mp3",
+            "category": "misc",
+            "tier": 3
+        },
     ]
 }
