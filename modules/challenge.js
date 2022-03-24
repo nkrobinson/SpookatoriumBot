@@ -65,11 +65,12 @@ exports.Challenge = class Challenge {
 
     writeTimerToFile() {
         const timer = setInterval(() => {
-            if (this.remainingChallengeTime <= 0) {
+            const remainingTime = this.remainingChallengeTime;
+            if (remainingTime <= 0) {
                 this.clearFiles();
                 clearInterval(timer);
             } else {
-                const content = `${this.remainingChallengeTime} Seconds Left`;
+                const content = `${String(Math.floor(remainingTime/60)).padStart(2,'0')}:${(String(remainingTime%60)).padStart(2,'0')}`;
                 fs.writeFile(this.timeOutputFile, content, err => {
                     if (err) {
                     console.error(err);
