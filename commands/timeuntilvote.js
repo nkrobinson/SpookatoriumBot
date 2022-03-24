@@ -4,7 +4,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('timeuntilvote')
 		.setDescription('Returns how long until the next vote starts')
-		.setDefaultPermission(false),
+		.setDefaultPermission(true),
 	async execute({interaction, voting}={}) {
 		if (voting.isCurrentlyVoting)
 			return interaction.reply({ content: `A vote is currently active`, ephemeral: true });
