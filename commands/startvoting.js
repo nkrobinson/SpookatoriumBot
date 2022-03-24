@@ -10,7 +10,7 @@ module.exports = {
 		if (voting.isCurrentlyVoting)
 			return interaction.reply({ content: `A Vote is currently active`, ephemeral: true });
 
-		const tierCount = interaction.options.getChannel('tiercount');
+		const tierCount = interaction.options.getInteger('tiercount');
 		voting.setTierCount(tierCount);
 
 		voting.startVoting();
