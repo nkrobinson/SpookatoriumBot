@@ -46,6 +46,7 @@ exports.Voting = class Voting {
         this.votingInterval = votingTime;
 
         this.setFile(interencesJsonFile);
+        this.setTierCount(null);
     }
 
     readVoteFile() {
@@ -68,6 +69,15 @@ exports.Voting = class Voting {
         } catch(err) {
             this.fileName = currentFile;
             return false;
+        }
+    }
+
+    setTierCount(tierCount) {
+        if (tierCount == null) {
+            this.tierCount = tierMaxCount;
+        }
+        else {
+            this.tierCount = tierCount;
         }
     }
 
@@ -122,7 +132,7 @@ exports.Voting = class Voting {
     }
 
     advanceTier() {
-        if (this.tierCounter >= tierMaxCount) {
+        if (this.tierCounter >= this.tierCount) {
             if (this.tier == 3) {
                 return;
             }
