@@ -1,4 +1,4 @@
-const { MessageActionRow, MessageButton } = require('discord.js');
+const { ActionRowBuilder, ButtonBuilder } = require('discord.js');
 const { votingChannelId,votingTime } = require('../config/config.json');
 const { Challenge } = require('./challenge');
 
@@ -56,12 +56,12 @@ exports.Bridge = class Bridge {
     }
 
     startVoting() {
-		const row = new MessageActionRow()
+		const row = new ActionRowBuilder()
 			.addComponents(
-				new MessageButton()
+				new ButtonBuilder()
 					.setCustomId('vote')
 					.setLabel('Vote')
-					.setStyle('PRIMARY'),
+					.setStyle('Primary'),
 			);
         const channel = this.client.channels.cache.get(this.channelId)
         const promise = channel.send({

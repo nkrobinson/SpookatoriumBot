@@ -1,12 +1,12 @@
 const fs = require('fs');
-const { Client, Collection, Intents } = require('discord.js');
+const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const { token, guildId, roleId } = require('./config/config.json');
 const { Voice } = require('./modules/voice.js');
 const { Voting } = require('./modules/voting.js');
 const { Bridge } = require('./modules/bridge.js');
 const { Award } = require('./modules/award.js');
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildVoiceStates] });
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -19,25 +19,8 @@ for (const file of commandFiles) {
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
 
-    // Add permissions for Admin only commands
-    client.guilds.cache.get(guildId)?.commands.fetch().then(collection => {
-        collection.forEach(command => {
-            if(!command.defaultPermission){
-				console.log(`Set ${command.name} permission`);
-				client.guilds.cache.get(guildId)?.commands.permissions.set({command: command.id, permissions: [
-                    {
-						id: roleId,
-						type: 'ROLE',
-						permission: true,
-                    }
-                ]}).catch(console.log);
-            }
-			if (command.name === 'nominate') {
-				award.updateAwardCommand(client, command.id);
-			}
-        });
-    }).catch(console.log);
-
+    //TODO: Add permissions for Admin only commands
+    // Currently Admin permissions have to be given manually
 
 	console.log('Ready!');
 });
