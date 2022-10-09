@@ -201,8 +201,9 @@ exports.Voting = class Voting {
         var entry = '';
         var maxVotes = 0;
         var ties = [];
-        for (const key of Object.keys(this.voteDict)) {
-            const size = this.voteDict[key].size;
+        var localDict = this.voteDict;
+        for (const key of Object.keys(localDict)) {
+            const size = localDict[key].size;
             if (size === maxVotes)
                 ties.push(key);
             if (size > maxVotes) {
