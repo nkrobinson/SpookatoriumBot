@@ -1,11 +1,23 @@
 const fs = require('fs');
 const tmi = require('tmi.js');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
-const { token, twitchUsername, twitchOAuth, twitchChannel } = require('./config/config.json');
+const { token, clientId, guildId, roleId, votingChannelId,
+		twitchUsername, twitchOAuth, twitchChannel
+	} = require('./config/config.json');
 const { Voice } = require('./modules/voice.js');
 const { Voting } = require('./modules/voting.js');
 const { Bridge } = require('./modules/bridge.js');
 const { Award } = require('./modules/award.js');
+
+////// CONFIG CHECK //////
+if (!token || !clientId || !guildId || !roleId || !votingChannelId) {
+	console.log('Discord is not set up in config file');
+	return;
+}
+if (!twitchUsername || !twitchOAuth || !twitchChannel) {
+	console.log('Twitch is not set up in config file');
+	return;
+}
 
 ////// DISCORD CLIENT //////
 // Initialise Discord Client
@@ -130,10 +142,12 @@ function onMessageHandler (channel, tags, msg, self) {
 	}
 }
 
+// Twitch On Launch handlers
 function onConnectedHandler(addr, port) {
 	console.log('Connected');
 }
 
+//// INITIALISE AND START SERVER ////
 const award = new Award();
 client.login(token);
 t_client.connect();
