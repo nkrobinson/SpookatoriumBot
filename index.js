@@ -55,7 +55,7 @@ client.on('interactionCreate', async interaction => {
 			}
 	
 			voting.castVote(interaction.values, interaction.user.id);
-			console.log(`Vote Counted: ${voting.getVoteDetails(interaction.values).name}`);
+			console.log(`Vote Counted: ${voting.getVoteDetails(interaction.values).name} by ${interaction.user.id}`);
 			interaction.update({ content: 'Your vote has been counted', components: [] });
 		}
 
@@ -102,12 +102,32 @@ t_client.on('message',   onMessageHandler);
 t_client.on('connected', onConnectedHandler);
 
 // Twitch command handlers
-function onMessageHandler (target, context, msg, self) {
+function onMessageHandler (channel, tags, msg, self) {
     if (self) return;
-    
-	// This logs out all the messages sent on the channel on the terminal
-    console.log(msg);
-	t_client.say(twitchChannel, `YOUR MESSAGE WAS ${msg}`);
+	if (!msg.startsWith('!')) return;
+
+	const args = msg.slice(1).split(' ');
+	const command = args.shift().toLowerCase();
+
+	if (command === 'vote') {
+		if (!voting.isCurrentlyVoting) {
+			t_client.say(twitchChannel, `There is no active vote currently`);
+			return;
+		}
+
+		if (args.length !== 1) return;
+		const vote_index = args.shift().toLowerCase() - 1; //Decrease by 1 due to array index not matching Twitch Options
+		if (typeof vote_index !== 'number') return;
+		if (vote_index <= 0 || vote_index > 4) return;
+		
+		var vote_id = voting.votingOptionsJSON[vote_index].value;
+		var user_id = tags["user-id"];
+
+
+		voting.castVote(vote_id, user_id);
+		console.log(`Vote Counted: ${voting.getVoteDetails(vote_id).name} by ${user_id}`);
+		t_client.say(twitchChannel, `Your vote has been counted`);
+	}
 }
 
 function onConnectedHandler(addr, port) {
