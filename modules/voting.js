@@ -3,7 +3,11 @@ const {
     audioInterencesJsonFile,
     betweenVoteTime,
     votingTime,
-    tierMaxCount
+    tierMaxCount,
+    option1File,
+    option2File,
+    option3File,
+    option4File
 } = require('../config/config.json');
 const fs = require('fs');
 
@@ -159,6 +163,7 @@ exports.Voting = class Voting {
             return;
         this.limitVotingOptions();
         this.initialiseVotingDictionary();
+        this.outputOptionsToFiles()
         this.voterList = [];
         this.bridge.startVoting();
 
@@ -230,6 +235,7 @@ exports.Voting = class Voting {
     finishVote(winner) {
         const winnerJSON = this.getVoteDetails(winner.entry);
         this.bridge.voteFinish(winnerJSON, winner.maxVotes, winner.tied);
+        this.clearOptionFiles();
     }
 
     resetTimer() {
@@ -281,6 +287,32 @@ exports.Voting = class Voting {
         this.initialiseTier();
         this.stopTimer();
         this.stopVoteTimer();
+    }
+
+    outputOptionsToFiles() {
+        // Not using a loop to avoid dynamic file names
+        this.writeToFile(option1File, this.voteList[0].name);
+        this.writeToFile(option2File, this.voteList[1].name);
+        this.writeToFile(option3File, this.voteList[2].name);
+        this.writeToFile(option4File, this.voteList[3].name);
+    }
+
+    clearOptionFiles() {
+        // Not using a loop to avoid dynamic file names
+        this.writeToFile(option1File, '');
+        this.writeToFile(option2File, '');
+        this.writeToFile(option3File, '');
+        this.writeToFile(option4File, '');
+    }
+
+    writeToFile(fileName, text) {
+        fs.writeFile(fileName, text, err => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            //file written successfully
+          });
     }
 
 }
