@@ -1,0 +1,24 @@
+{
+	"token": "",
+
+	"clientId": "",
+	"guildId": "",
+	"roleId": "",
+	"votingChannelId": "",
+
+	"twitchUsername": "",
+	"twitchOAuth": "",
+	"twitchChannel": "",
+
+	"awardsJsonFile": "./config/awards.json",
+	"victimsJsonFile": "./config/victims.json",
+	"interencesJsonFile": "./config/interferences.json",
+	"audioInterencesJsonFile": "./config/audio_only_interferences.json",
+	"betweenVoteTime" : 300000,
+	"votingTime" : 60000,
+	"tierMaxCount" : 2,
+
+	"challengeNameFile": "./output/challengeName.txt",
+	"challengeTimeFile": "./output/challengeTime.txt",
+	"awardsStoreFile": "./output/awards.txt"
+}
