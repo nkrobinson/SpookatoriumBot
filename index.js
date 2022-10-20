@@ -153,4 +153,4 @@ client.login(token);
 t_client.connect();
 const voice = new Voice(client);
 const voting = new Voting();
-new Bridge(client, voice, voting);
+new Bridge(client, t_client, voice, voting);

@@ -1,11 +1,12 @@
 const { ActionRowBuilder, ButtonBuilder } = require('discord.js');
-const { votingChannelId,votingTime } = require('../config/config.json');
+const { votingChannelId,votingTime, twitchChannel } = require('../config/config.json');
 const { Challenge } = require('./challenge');
 
 exports.Bridge = class Bridge {
 
-    constructor(client, voice, voting) {
+    constructor(client, twitchClient, voice, voting) {
         this.client = client;
+        this.twitchClient = twitchClient;
         this.voice = voice;
         this.voting = voting;
 
@@ -22,6 +23,9 @@ exports.Bridge = class Bridge {
 
     voteFinish(winner, votes, tied) {
         const channel = this.client.channels.cache.get(this.channelId)
+
+        // Announce Voting end to Twitch
+        this.twitchClient.say(twitchChannel, `The Interference Vote has ended!`);
 
         if (votes === 0 )
             return channel.send(`Voting Failed. No votes cast.`);
@@ -68,6 +72,7 @@ exports.Bridge = class Bridge {
             content: `Voting has started!\nClick the Vote button for an interference for the Participant\nYou have ${votingTime/1000} seconds left (may have up to a 5 second delay)`
            ,components: [row] 
         });
+        this.twitchVotingAnnounce();
         const voting = this.voting;
         promise.then(
             function(msg) {
@@ -89,6 +94,25 @@ exports.Bridge = class Bridge {
             },
             function(error) { console.log(error) }
         )
+    }
+
+    twitchVotingAnnounce() {
+        // Announce Voting
+        this.twitchClient.say(twitchChannel, `Interference Vote Started!`);
+
+        // Get Voting Options
+        let votingOptions = this.voting.votingOptionsJSON;
+        
+        // Announce Voting Options
+        // Use single message for all the Voting Options
+        let optionsText = '';
+        for (let i = 0; i < 4; i++) {
+            optionsText = optionsText + `Use !vote ${i+1} to vote for the ${votingOptions[i].label} Interference - ${votingOptions[i].description}`;
+            if (i != 3) {
+                optionsText = optionsText + ' | '
+            }
+        }
+        this.twitchClient.say(twitchChannel, `${optionsText}`);
     }
 
 }

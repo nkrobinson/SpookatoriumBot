@@ -4,7 +4,7 @@
             {
                 "id": "sound_all",
                 "name": "Random Sound",
-                "description": "Plays a random sound cue from all available Tiers",
+                "description": "Plays a random sound cue",
                 "type": "sound",
                 "audio_category": "all"
             },
@@ -25,7 +25,7 @@
             {
                 "id": "sound_ambient",
                 "name": "Ambient Sound",
-                "description": "Plays an ambient ambient sound cue",
+                "description": "Plays an ambient sound cue",
                 "type": "sound",
                 "audio_category": "ambient"
             }
