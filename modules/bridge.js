@@ -81,12 +81,14 @@ exports.Bridge = class Bridge {
                         msg.edit({ 
                             content: `Voting has started!\nClick the Vote button for an interference for the Participant\nYou have ${voting.votingTimeLeft} seconds left (may have up to a 5 second delay)`
                            ,components: [row] 
-                        })
+                        });
+                        voting.writeTimeToFile();
                     } else {
                         msg.edit({ 
                             content: `Voting has finished`
                            ,components: [] 
                         });
+                        voting.clearTimeFile();
                         clearInterval(timer);
                     }
                 }, 1000);
