@@ -8,6 +8,7 @@ const { Voice } = require('./modules/voice.js');
 const { Voting } = require('./modules/voting.js');
 const { Bridge } = require('./modules/bridge.js');
 const { Award } = require('./modules/award.js');
+const { Info } = require('./modules/info');
 
 ////// CONFIG CHECK //////
 if (!token || !clientId || !guildId || !roleId || !votingChannelId) {
@@ -50,7 +51,8 @@ client.on('interactionCreate', async interaction => {
 				interaction : interaction,
 				voice : voice,
 				voting : voting,
-				award : award
+				award : award,
+				info : info
 			});
 		} catch (error) {
 			console.error(error);
@@ -151,6 +153,7 @@ function onConnectedHandler(addr, port) {
 const award = new Award();
 client.login(token);
 t_client.connect();
+const info = new Info(t_client);
 const voice = new Voice(client);
 const voting = new Voting();
 new Bridge(client, t_client, voice, voting);
