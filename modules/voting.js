@@ -7,7 +7,8 @@ const {
     option1File,
     option2File,
     option3File,
-    option4File
+    option4File,
+    timerFile
 } = require('../config/config.json');
 const fs = require('fs');
 
@@ -303,6 +304,18 @@ exports.Voting = class Voting {
         this.writeToFile(option2File, '');
         this.writeToFile(option3File, '');
         this.writeToFile(option4File, '');
+    }
+
+    writeTimeToFile() {
+        let timeLeft = this.votingTimeLeft;
+        const content = `${String(Math.floor(timeLeft/60)).padStart(2,'0')}:${(String(timeLeft%60)).padStart(2,'0')}`;
+        // Not using a loop to avoid dynamic file names
+        this.writeToFile(timerFile, content);
+    }
+
+    clearTimeFile() {
+        // Not using a loop to avoid dynamic file names
+        this.writeToFile(timerFile, '');
     }
 
     writeToFile(fileName, text) {

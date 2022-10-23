@@ -20,5 +20,10 @@
 
 	"challengeNameFile": "./output/challengeName.txt",
 	"challengeTimeFile": "./output/challengeTime.txt",
-	"awardsStoreFile": "./output/awards.txt"
+	"awardsStoreFile": "./output/awards.txt",
+	"option1File": "./output/option1.txt",
+	"option2File": "./output/option2.txt",
+	"option3File": "./output/option3.txt",
+	"option4File": "./output/option4.txt",
+	"timerFile": "./output/voteTime.txt"
 }
