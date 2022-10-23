@@ -3,8 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('nominate')
-		.setDescription('Nominate a Victim for an Award')
-		.setDefaultPermission(true),
+		.setDescription('Nominate a Victim for an Award'),
 	async execute({interaction, award}={}) {
 
         const awardNom = interaction.options.getString('award');

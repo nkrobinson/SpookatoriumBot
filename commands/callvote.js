@@ -4,7 +4,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('callvote')
 		.setDescription('Calls vote for challenge')
-		.setDefaultPermission(false),
+		.setDefaultMemberPermissions('0'),
 	async execute({interaction, voting}={}) {
 		if (voting.isCurrentlyVoting)
 			return interaction.reply({ content: `A vote is currently active`, ephemeral: true });

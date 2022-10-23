@@ -4,7 +4,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('pause')
 		.setDescription('Pauses/Unpauses current media playback from Bot')
-		.setDefaultPermission(false),
+		.setDefaultMemberPermissions('0'),
     async execute({interaction, voice}={}) {
 
         if (voice.isPlaying) {

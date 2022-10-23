@@ -4,7 +4,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('audiointfstoggle')
 		.setDescription('Toggles audio only interferences')
-		.setDefaultPermission(false),
+		.setDefaultMemberPermissions('0'),
 	async execute({interaction, voting}={}) {
 		if (voting.isCurrentlyVoting)
 			return interaction.reply({ content: `A Vote is currently active. Can't change while vote is active`, ephemeral: true });

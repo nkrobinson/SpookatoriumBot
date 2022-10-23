@@ -5,7 +5,7 @@ module.exports = {
 		.setName('play')
 		.setDescription('Plays source specified by command')
 		.addStringOption(option => option.setName('source').setDescription('Enter a media source to play'))
-		.setDefaultPermission(false),
+		.setDefaultMemberPermissions('0'),
 	async execute({interaction, voice}={}) {
 
         if (!voice.inVoiceChannel)
