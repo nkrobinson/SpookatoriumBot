@@ -41,14 +41,14 @@ exports.Bridge = class Bridge {
                 break;
             case "challenge":
                 if (winner.challenge_start != null)
-                    this.playVoteAudio(winner.challenge_start);
+                    this.voice.playMedia(winner.challenge_start);
 
                 this.challenge.startChallenge(winner);
 
                 if (winner.challenge_end != null) {
                     const timer = setInterval(() => {
                         if (this.challenge.remainingChallengeTime <= 0) {
-                            this.playVoteAudio(winner.challenge_end);
+                            this.voice.playMedia(winner.challenge_end);
                             clearInterval(timer);
                         }
                     }, 1000);

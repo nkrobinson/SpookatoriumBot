@@ -50,14 +50,18 @@
                 "name": "Earphones Swap",
                 "description": "Participant must swap around left and right earphones (3 Minutes Duration)",
                 "type": "challenge",
-                "time": "180000"
+                "time": "180000",
+                "challenge_start": "interferences/earphone-swap.mp3",
+                "challenge_end": "interferences/challenge-over.mp3"
             },
             {
                 "id": "no_swear",
                 "name": "Wash Your Mouth Out",
                 "description": "Participant is not allowed to swear (3 Minutes Duration)",
                 "type": "challenge",
-                "time": "180000"
+                "time": "180000",
+                "challenge_start": "interferences/wash-your-mouth-out.mp3",
+                "challenge_end": "interferences/challenge-over.mp3"
             }
         ],
         "tier_3_voting": [
@@ -66,21 +70,27 @@
                 "name": "AntiDextrous",
                 "description": "Participant must cross hands while playing (3 Minutes Duration)",
                 "type": "challenge",
-                "time": "180000"
+                "time": "180000",
+                "challenge_start": "interferences/anti-dextrous.mp3",
+                "challenge_end": "interferences/challenge-over.mp3"
             },
             {
                 "id": "only_left",
                 "name": "Portside Shuffle",
                 "description": "Whenever turning, the Participant must only turn left (3 Minutes Duration)",
                 "type": "challenge",
-                "time": "180000"
+                "time": "180000",
+                "challenge_start": "interferences/portside-shuffle.mp3",
+                "challenge_end": "interferences/challenge-over.mp3"
             },
             {
                 "id": "no_stop",
                 "name": "Don't Stop Me Now",
-                "description": "Participant must not stop moving for (3 Minutes Duration)",
+                "description": "Participant must not stop moving (3 Minutes Duration)",
                 "type": "challenge",
-                "time": "180000"
+                "time": "180000",
+                "challenge_start": "interferences/dont-stop-me-now.mp3",
+                "challenge_end": "interferences/challenge-over.mp3"
             }
         ]
     }
