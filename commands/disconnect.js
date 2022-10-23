@@ -4,7 +4,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('disconnect')
 		.setDescription('Disconnects from the voice channel currently connected to')
-		.setDefaultPermission(false),
+		.setDefaultMemberPermissions('0'),
 	async execute({interaction, voice}={}) {
 
         if (!voice.inVoiceChannel)
@@ -12,6 +12,6 @@ module.exports = {
 
         voice.disconnect();
         
-        return interaction.reply({ content: `Connected from Voice Channel`, ephemeral: true });
+        return interaction.reply({ content: `Disconnected from Voice Channel`, ephemeral: true });
 	},
 };

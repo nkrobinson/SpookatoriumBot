@@ -34,8 +34,18 @@ for (const file of commandFiles) {
 
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
-    //TODO: Add permissions for Admin only commands
+
+    // TODO: Add permissions for Admin only commands
     // Currently Admin permissions have to be given manually
+	//
+	// Update Nominate Command for params to use latest configs
+	client.guilds.cache.get(guildId)?.commands.fetch().then(collection => {
+		collection.forEach(command => {
+			if (command.name === 'nominate')
+				award.updateAwardCommand(client, command.id);
+		});
+	});
+
 	console.log('Ready!');
 });
 

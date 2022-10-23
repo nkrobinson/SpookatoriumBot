@@ -5,7 +5,7 @@ module.exports = {
 		.setName('joinchannel')
 		.setDescription('Joins the voice channel user is currently connected to')
 		.addChannelOption(option => option.setName('channel').setDescription('Enter a Voice Channel to join'))
-		.setDefaultPermission(false),
+		.setDefaultMemberPermissions('0'),
     async execute({interaction, voice}={}) {
 
         const channelId = interaction.options.getChannel('channel') ?? interaction.member.voice.channel;

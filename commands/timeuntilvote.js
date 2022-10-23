@@ -3,8 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('timeuntilvote')
-		.setDescription('Returns how long until the next vote starts')
-		.setDefaultPermission(true),
+		.setDescription('Returns how long until the next vote starts'),
 	async execute({interaction, voting}={}) {
 		if (voting.isCurrentlyVoting)
 			return interaction.reply({ content: `A vote is currently active`, ephemeral: true });

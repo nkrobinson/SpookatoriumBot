@@ -6,7 +6,7 @@ module.exports = {
 		.setName('setinterferences')
 		.setDescription('Sets Interferences file')
 		.addStringOption(option => option.setName('file').setDescription('Enter a File name in config folder to set for Voting'))
-		.setDefaultPermission(false),
+		.setDefaultMemberPermissions('0'),
     async execute({interaction, voting}={}) {
 
         var file = interaction.options.getString('file');
