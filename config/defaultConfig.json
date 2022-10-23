@@ -12,6 +12,10 @@
 
 	"awardsJsonFile": "./config/awards.json",
 	"victimsJsonFile": "./config/victims.json",
+
+	"infoJsonFile" : "./config/info.json",
+	"infoInterval" : 480000,
+
 	"interencesJsonFile": "./config/interferences.json",
 	"audioInterencesJsonFile": "./config/audio_only_interferences.json",
 	"betweenVoteTime" : 300000,

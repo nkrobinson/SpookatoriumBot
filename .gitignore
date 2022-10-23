@@ -106,6 +106,7 @@ dist
 # Configuration Files
 config.json
 victims.json
+info.json
 
 # Media Files
 /media/*
