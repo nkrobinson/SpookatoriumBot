@@ -43,6 +43,10 @@ client.once('ready', () => {
 		collection.forEach(command => {
 			if (command.name === 'nominate')
 				award.updateAwardCommand(client, command.id);
+			else if (command.name === 'play') {
+				voice.setPlayId(command.id);
+				voice.updatePlayCommand(client);
+			}
 		});
 	});
 

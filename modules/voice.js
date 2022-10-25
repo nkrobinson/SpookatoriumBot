@@ -3,7 +3,7 @@ const { joinVoiceChannel,
         createAudioResource, 
         getVoiceConnection
 } = require('@discordjs/voice');
-const { guild_id } = require('../config/config.json');
+const { guildId } = require('../config/config.json');
 const fs = require('fs');
 
 exports.Voice = class Voice {
@@ -24,6 +24,10 @@ exports.Voice = class Voice {
         if (this.player == null)
             return false;
         return this.player.state.status === 'playing';
+    }
+
+    get playOptionsAmount() {
+        return this.optionsAmount;
     }
 
     constructor(client) {
@@ -105,6 +109,61 @@ exports.Voice = class Voice {
         const resource = createAudioResource(source);
         this.player.play(resource);
         this.vc.subscribe(this.player);
+    }
+
+    setPlayId(commandId) {
+        this.playId = commandId;
+    }
+
+    updatePlayCommand(client) {
+        let optionsJSON = [];
+        let index = 0;
+        
+        // Get list of all the mp3 files in the media folder
+        const mediaFiles = fs.readdirSync('./media').filter(file => file.endsWith('.mp3'));
+        
+        // Get amount of options requiring added to the command
+        const optionsAmount = Math.ceil(mediaFiles.length / 25);
+
+        // Generate an Option for each set of 25
+        // (Yes this is a bit insane. Not sure if there is a limit to number of dropdowns)
+        for (let i = 0; i < optionsAmount; i++) {
+
+            let mediaJSON = [];
+            
+            // Discord has a dropdown limit of 25
+            // Limit each dropdown parameter to 25 options
+            for (let j = 0; j < 25; j++) {
+
+                if (index >= mediaFiles.length)
+                    break;
+                
+                mediaJSON.push(
+                    {
+                        name: `${mediaFiles[index]}`,
+                        value: `${mediaFiles[index]}`
+                    }
+                );
+                index++;
+            }
+
+            optionsJSON.push(
+                {
+                    name: `source${i}`,
+                    description: "The Audio file to play",
+                    type: 3,
+                    required: false,
+                    choices: mediaJSON
+                }
+            );
+
+        }
+
+        client.guilds.cache.get(guildId)?.commands.edit(this.playId, {
+            options: optionsJSON
+        });
+
+        this.optionsAmount = optionsAmount;
     }
 
 }
