@@ -170,8 +170,11 @@ exports.Voting = class Voting {
 
         var t = this;
         this.vote = setTimeout(
-            function() { 
-                t.finishVote(t.tallyVotes(tierAdvance));
+            function() {
+                t.finishVote(t.tallyVotes());
+                if (tierAdvance)
+                    t.advanceTier();
+
             },
             this.votingInterval
         )
@@ -202,7 +205,7 @@ exports.Voting = class Voting {
         return this.voteList.filter(d => d.id == vote_id)[0];
     }
 
-    tallyVotes(tierAdvance) {
+    tallyVotes() {
         console.log('Tallying Votes');
         var entry = '';
         var maxVotes = 0;
@@ -227,8 +230,6 @@ exports.Voting = class Voting {
 
         this.vote = null;
         this.voteDict = null;
-        if (tierAdvance) 
-            this.advanceTier();
 
         return {entry, maxVotes, tied};
     }
@@ -237,6 +238,12 @@ exports.Voting = class Voting {
         const winnerJSON = this.getVoteDetails(winner.entry);
         this.bridge.voteFinish(winnerJSON, winner.maxVotes, winner.tied);
         this.clearOptionFiles();
+    }
+
+    randomVoteOption() {
+        const i = Math.floor(Math.random() * this.voteList.length);
+        console.log(`Choosing random vote option`);
+        return  this.voteList[i];
     }
 
     resetTimer() {

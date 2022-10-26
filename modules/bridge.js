@@ -30,6 +30,22 @@ exports.Bridge = class Bridge {
         if (votes === 0 )
             return channel.send(`Voting Failed. No votes cast.`);
 
+        try {
+            if (winner.name == null) {
+                winner = this.voting.randomVoteOption();
+            }
+        } catch (error) {
+            console.log(error);
+            console.log(this.voting.votingOptionsJSON);
+            // Not sure if this is caused by an error in votingList so need to include nested try
+            try {
+                winner = this.voting.randomVoteOption();
+            } catch (error) {
+                console.log(error);
+                return channel.send(`Voting Failed due to voting bug`);
+            }
+        }
+        
         if (tied)
             channel.send(`Voting has Finished. \n${winner.name} won after being randomly selected from tying winners with ${votes} votes.`);
         else
