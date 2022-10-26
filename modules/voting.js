@@ -127,7 +127,7 @@ exports.Voting = class Voting {
 
     limitVotingOptions() {
         const shuffled = this.fullVoteList.sort(() => 0.5 - Math.random());
-        this.voteList = shuffled.slice(0, 5);
+        this.voteList = shuffled.slice(0, 4); // Limit voting options to 4
     }
 
     initialiseTier() {
