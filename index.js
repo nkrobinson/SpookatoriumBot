@@ -154,7 +154,9 @@ function onMessageHandler (channel, tags, msg, self) {
 
 		voting.castVote(vote_id, user_id);
 		console.log(`Vote Counted: ${voting.getVoteDetails(vote_id).name} by ${user_id}`);
-		t_client.say(twitchChannel, `Your vote has been counted`);
+
+		// Currently no response from bot as you cannot whisper back to user
+		// t_client.say(twitchChannel, `Your vote has been counted`);
 	}
 }
 

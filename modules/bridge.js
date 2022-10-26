@@ -46,10 +46,13 @@ exports.Bridge = class Bridge {
             }
         }
         
+        let message = '';
         if (tied)
-            channel.send(`Voting has Finished. \n${winner.name} won after being randomly selected from tying winners with ${votes} votes.`);
+            message = `Voting has Finished. \n${winner.name} won after being randomly selected from tying winners with ${votes} votes.`;
         else
-            channel.send(`Voting has Finished. \n${winner.name} won with ${votes} votes.`);
+            message = `Voting has Finished. \n${winner.name} won with ${votes} votes.`;
+        channel.send(message);
+        this.twitchClient.say(twitchChannel, message);
 
         switch (winner.type) {
             case "sound":
