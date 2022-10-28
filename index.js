@@ -146,7 +146,7 @@ function onMessageHandler (channel, tags, msg, self) {
 		if (args.length !== 1) return;
 		const vote_index = args.shift().toLowerCase() - 1; //Decrease by 1 due to array index not matching Twitch Options
 		if (typeof vote_index !== 'number') return;
-		if (vote_index <= 0 || vote_index > 4) return;
+		if (vote_index < 0 || vote_index > 3) return;
 		
 		var vote_id = voting.votingOptionsJSON[vote_index].value;
 		var user_id = tags["user-id"];
